@@ -1,6 +1,6 @@
 'use client';
 
-import { MenuIcon, XIcon, ChevronDown, FileTextIcon, ImageUpIcon, FileVideo, AudioLines, LightbulbIcon } from 'lucide-react';
+import { MenuIcon, XIcon, ChevronDown, FileTextIcon, ImageUpIcon, FileVideo, AudioLines, LightbulbIcon, Star } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -14,16 +14,16 @@ export default function Navbar() {
         {
             name: 'Packages',
             subLinks: [
-                { name: 'Text to Slides', href: '#packages/text-to-slides', icon: FileTextIcon, description: 'Convert text to slides' },
-                { name: 'Image to Slides', href: '#packages/image-to-slides', icon: ImageUpIcon, description: 'Convert images to slides' },
-                { name: 'Video to Slides', href: '#packages/video-to-slides', icon: FileVideo, description: 'Convert videos to slides' },
-                { name: 'Audio to Slides', href: '#packages/audio-to-slides', icon: AudioLines, description: 'Convert audio to slides' },
-                { name: 'Ideas to Slides', href: '#packages/ideas-to-slides', icon: LightbulbIcon, description: 'Generate slides from ideas' },
+                { name: 'Package 01', href: '/packages/package-01', icon: Star, description: 'Convert text to slides' },
+                { name: 'Package 02', href: '/packages/package-02', icon: Star, description: 'Convert images to slides' },
+                { name: 'Package 03', href: '/packages/package-03', icon: Star, description: 'Convert videos to slides' },
+                { name: 'Package 04', href: '/packages/package-04', icon: Star, description: 'Convert audio to slides' },
+                { name: 'Package 05', href: '/packages/package-05', icon: Star, description: 'Generate slides from ideas' },
             ],
         },
-        { name: 'Gallery', href: '#gallery' },
-        { name: 'About', href: '#about' },
-        { name: 'Contact', href: '#contact' },
+        { name: 'Gallery', href: '/gallery' },
+        { name: 'About', href: '/about' },
+        { name: 'Contact', href: '/contact' },
     ];
 
     return (
@@ -42,7 +42,7 @@ export default function Navbar() {
                             </div>
 
                             <div className={`absolute top-6 left-0 z-40 w-lg rounded-md border border-gray-100 bg-white p-3 shadow-lg transition-all duration-200 ease-in-out ${openDropdown === link.name ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-2 opacity-0'}`}>
-                                <p>Explore our AI tools</p>
+                                <p>Explore our Packages</p>
                                 <div className='mt-3 grid grid-cols-2 gap-2'>
                                     {link.subLinks.map((sub) => (
                                         <Link href={sub.href} key={sub.name} className='group/link flex items-center gap-2 rounded-md p-2 transition hover:bg-gray-100'>
