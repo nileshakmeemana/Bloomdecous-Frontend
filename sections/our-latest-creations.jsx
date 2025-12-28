@@ -21,7 +21,7 @@ export default function OurLatestCreations() {
     ];
     return (
         <section className="flex flex-col items-center justify-center mt-40">
-            <SectionTitle title="Our Latest Creations" subtitle="A visual collection of our most recent works - each piece crafted with intention, emotion, and style." />
+            <SectionTitle title="Our Latest Creations" subtitle="A showcase of beautifully styled celebrations, designed with intention, emotion, and attention to detail.  " />
             <div className="flex flex-wrap items-center justify-center gap-10 mt-16">
                 {data.map((item, index) => (
                     <div key={index} className="max-w-80 hover:-translate-y-0.5 transition duration-300">

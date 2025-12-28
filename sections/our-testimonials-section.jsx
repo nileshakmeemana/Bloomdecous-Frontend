@@ -49,7 +49,7 @@ export default function OurTestimonialSection() {
 
     return (
         <section className='flex flex-col items-center justify-center mt-40'>
-            <SectionTitle title='Our Testimonials' subtitle='Hear from our satisfied customers about the benefits of using SlideX. We love hearing from our customers.' />
+            <SectionTitle title='Our Testimonials' subtitle='Discover why clients choose Bloomdecous for elegant, stress-free event décor and unforgettable celebrations.' />
 
             <div className='mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'>
                 {data.map((item, index) => (

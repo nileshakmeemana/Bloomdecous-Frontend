@@ -73,21 +73,21 @@ export default function HeroSection() {
                         src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=50&h=50&auto=format&fit=crop"
                         alt="userImage3" />
                 </div>
-                <p className="pl-2 pr-3 text-gray-600">Join community of 1m+ founders </p>
+                <p className="pl-2 pr-3 text-gray-600">Trusted by 1,000+ Happy Event Clients</p>
             </div>
 
             <h1
-                className="text-4xl md:text-6xl/18 text-center font-semibold max-w-2xl mt-5 bg-gradient-to-r from-black to-[#748298] text-transparent bg-clip-text">
-                Build, Launch & Scale with{" "}
-                <span className="bg-[#b19316] bg-clip-text text-transparent">PrebuiltUI.</span>
+                className="text-3xl md:text-5xl/18 text-center font-semibold max-w-2xl mt-5 bg-gradient-to-r from-black to-[#748298] text-transparent bg-clip-text">
+                Create Beautiful Moments with{" "}
+                <span className="bg-[#b19316] bg-clip-text text-transparent">Bloomdecous.</span>
             </h1>
             <p className="text-slate-600 md:text-base max-md:px-2 text-center max-w-lg mt-3">
-                A high-performance, serverless Postgres database that helps you ship fast and scale without limits.
+                A luxury event styling service creating unforgettable celebrations with custom décor and balloon artistry.
             </p>
 
             <button
                 className="flex items-center gap-2 btn hover:opacity-90 text-white px-8 py-3 mt-8 rounded-full transition">
-                <span>get started for free</span>
+                <span>View Packages</span>
                 <ArrowRightIcon className='size-5' />
             </button>
 

@@ -30,7 +30,7 @@ export default function Navbar() {
         <>
             <nav className='sticky top-0 z-50 flex w-full items-center justify-between bg-white/50 px-4 py-3.5 backdrop-blur-md md:px-16 lg:px-24'>
                 <a href='/'>
-                    <Image src='/assets/logo.svg' alt='logo' className='h-8.5 w-auto' width={205} height={48} />
+                    <Image src='/assets/SVG.svg' alt='logo' className='h-8.5 w-auto' width={205} height={48} />
                 </a>
 
                 <div className='hidden items-center space-x-7 text-gray-700 md:flex'>
