@@ -43,7 +43,7 @@ export default function Login() {
                     <button type="submit" className="btn mt-8 w-full h-11 rounded-full text-white hover:opacity-90 transition-opacity">
                         Login
                     </button>
-                    <p className="text-gray-500/90 text-sm mt-4">Don’t have an account? <a className="text-red-600 hover:underline" href="/signup">Sign up</a></p>
+                    <p className="text-gray-500/90 text-sm mt-4">Don’t have an account? <a className="text-[#b19316] hover:underline" href="/signup">Sign up</a></p>
                 </form>
             </div>
         </div>

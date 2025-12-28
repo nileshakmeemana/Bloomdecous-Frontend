@@ -1,6 +1,6 @@
 'use client';
 
-import { MenuIcon, XIcon, ChevronDown, FileTextIcon, ImageUpIcon, FileVideo, AudioLines, LightbulbIcon, Star } from 'lucide-react';
+import { MenuIcon, XIcon, ChevronDown, FileTextIcon, ImageUpIcon, FileVideo, AudioLines, LightbulbIcon, Star, PackageIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -14,11 +14,11 @@ export default function Navbar() {
         {
             name: 'Packages',
             subLinks: [
-                { name: 'Package 01', href: '/packages/package-01', icon: Star, description: 'Convert text to slides' },
-                { name: 'Package 02', href: '/packages/package-02', icon: Star, description: 'Convert images to slides' },
-                { name: 'Package 03', href: '/packages/package-03', icon: Star, description: 'Convert videos to slides' },
-                { name: 'Package 04', href: '/packages/package-04', icon: Star, description: 'Convert audio to slides' },
-                { name: 'Package 05', href: '/packages/package-05', icon: Star, description: 'Generate slides from ideas' },
+                { name: 'Package 01', href: '/packages/package-01', icon: PackageIcon, description: 'Convert text to slides' },
+                { name: 'Package 02', href: '/packages/package-02', icon: PackageIcon, description: 'Convert images to slides' },
+                { name: 'Package 03', href: '/packages/package-03', icon: PackageIcon, description: 'Convert videos to slides' },
+                { name: 'Package 04', href: '/packages/package-04', icon: PackageIcon, description: 'Convert audio to slides' },
+                { name: 'Package 05', href: '/packages/package-05', icon: PackageIcon, description: 'Generate slides from ideas' },
             ],
         },
         { name: 'Gallery', href: '/gallery' },
@@ -29,7 +29,7 @@ export default function Navbar() {
     return (
         <>
             <nav className='sticky top-0 z-50 flex w-full items-center justify-between bg-white/50 px-4 py-3.5 backdrop-blur-md md:px-16 lg:px-24'>
-                <a href='https://prebuiltui.com?utm_source=material'>
+                <a href='/'>
                     <Image src='/assets/logo.svg' alt='logo' className='h-8.5 w-auto' width={205} height={48} />
                 </a>
 
@@ -65,7 +65,7 @@ export default function Navbar() {
                     ))}
                 </div>
 
-                <Link href='/' className='hidden rounded-full btn px-8 py-2.5 font-medium text-white transition hover:opacity-90 md:inline-block'>
+                <Link href='/signup' className='hidden rounded-full btn px-8 py-2.5 font-medium text-white transition hover:opacity-90 md:inline-block'>
                     Sign Up
                 </Link>
 
@@ -101,7 +101,7 @@ export default function Navbar() {
                     </div>
                 ))}
 
-                <Link href='/' className='rounded-full btn px-8 py-2.5 font-medium text-white transition hover:opacity-90' onClick={() => setIsOpen(false)}>
+                <Link href='/signup' className='rounded-full btn px-8 py-2.5 font-medium text-white transition hover:opacity-90' onClick={() => setIsOpen(false)}>
                     Sign Up
                 </Link>
 

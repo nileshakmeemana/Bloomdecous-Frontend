@@ -9,5 +9,5 @@ body {
 }
 
 .btn {
-    @apply cursor-pointer bg-gradient-to-r from-pink-400 to-red-500;
+    @apply cursor-pointer bg-[#b19316];
 }

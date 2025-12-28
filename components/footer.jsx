@@ -53,7 +53,7 @@ export default function Footer() {
                         <ul className="mt-5 space-y-2">
                             {item.links.map((link, index) => (
                                 <li key={index}>
-                                    <a href={link.href} className="hover:text-indigo-500 transition">
+                                    <a href={link.href} className="hover:text-[#b19316] transition">
                                         {link.title}
                                     </a>
                                 </li>
@@ -78,16 +78,16 @@ export default function Footer() {
                 <p className="text-center">© 2025 <a href="https://prebuiltui.com?utm_source=material">Bloomadecous, All rights reserved.</a></p>
                 <div className="flex items-center gap-4">
                     <a href="https://dribbble.com/prebuiltui" target="_blank" rel="noreferrer">
-                        <DribbbleIcon className="size-5 text-gray-400 hover:text-indigo-500" />
+                        <DribbbleIcon className="size-5 text-gray-400 hover:text-[#b19316]" />
                     </a>
                     <a href="https://www.linkedin.com/company/prebuiltui" target="_blank" rel="noreferrer">
-                        <LinkedinIcon className="size-5 text-gray-400 hover:text-indigo-500" />
+                        <LinkedinIcon className="size-5 text-gray-400 hover:text-[#b19316]" />
                     </a>
                     <a href="https://x.com/prebuiltui" target="_blank" rel="noreferrer">
-                        <TwitterIcon className="size-5 text-gray-400 hover:text-indigo-500" />
+                        <TwitterIcon className="size-5 text-gray-400 hover:text-[#b19316]" />
                     </a>
                     <a href="https://www.youtube.com/@prebuiltui" target="_blank" rel="noreferrer">
-                        <YoutubeIcon className="size-6 text-gray-400 hover:text-indigo-500" />
+                        <YoutubeIcon className="size-6 text-gray-400 hover:text-[#b19316]" />
                     </a>
                 </div>
             </div>

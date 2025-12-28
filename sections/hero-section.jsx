@@ -57,9 +57,9 @@ export default function HeroSection() {
                         <stop stopColor="#F6DFF4" />
                         <stop offset=".196" stopColor="#FF6E00" />
                         <stop offset=".407" stopColor="#F8C04D" />
-                        <stop offset=".586" stopColor="#EF3EC2" />
-                        <stop offset=".816" stopColor="#4700EC" />
-                        <stop offset=".949" stopColor="#5100BA" />
+                        <stop offset=".586" stopColor="#93ef3eff" />
+                        <stop offset=".816" stopColor="#ec4f00ff" />
+                        <stop offset=".949" stopColor="#57ba00ff" />
                     </linearGradient>
                 </defs>
             </svg>
@@ -79,7 +79,7 @@ export default function HeroSection() {
             <h1
                 className="text-4xl md:text-6xl/18 text-center font-semibold max-w-2xl mt-5 bg-gradient-to-r from-black to-[#748298] text-transparent bg-clip-text">
                 Build, Launch & Scale with{" "}
-                <span className="bg-gradient-to-b from-pink-400 to-red-600 bg-clip-text text-transparent">PrebuiltUI.</span>
+                <span className="bg-[#b19316] bg-clip-text text-transparent">PrebuiltUI.</span>
             </h1>
             <p className="text-slate-600 md:text-base max-md:px-2 text-center max-w-lg mt-3">
                 A high-performance, serverless Postgres database that helps you ship fast and scale without limits.

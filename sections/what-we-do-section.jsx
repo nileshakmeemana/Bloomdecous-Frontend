@@ -26,7 +26,7 @@ export default function WhatWeDoSection() {
             </div>
             <div className="text-sm text-slate-600 max-w-md">
                 <h1 className="text-xl uppercase font-semibold text-slate-700">What we do?</h1>
-                <div className="w-24 h-[3px] rounded-full bg-gradient-to-r from-pink-400 to-red-500"></div>
+                <div className="w-24 h-[3px] rounded-full bg-gradient-to-r from-[#b19316] to-[#EDBD0F]"></div>
                 <p className="mt-8">PrebuiltUI helps you build faster by transforming your design vision into fully functional,
                     production-ready UI components. </p>
                 <p className="mt-4">Whether you're launching a SaaS app, landing page, or dashboard, our collection of Tailwind
