@@ -11,8 +11,8 @@ export default function GalleryPage() {
     return (
         <main className="px-4">
             <OurLatestCreations />
-            <OurLatestCreations />
-            <OurLatestCreations />
+            <Gallery />
+            <MarqueeCards />
         </main>
     );
 }

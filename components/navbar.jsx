@@ -1,6 +1,6 @@
 'use client';
 
-import { MenuIcon, XIcon, ChevronDown, FileTextIcon, ImageUpIcon, FileVideo, AudioLines, LightbulbIcon, Star, PackageIcon } from 'lucide-react';
+import { MenuIcon, XIcon, ChevronDown, FileTextIcon, ImageUpIcon, FileVideo, AudioLines, LightbulbIcon, Star, PackageIcon, FlowerIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -12,13 +12,13 @@ export default function Navbar() {
     const links = [
         { name: 'Home', href: '/' },
         {
-            name: 'Packages',
+            name: 'Packages', href: '/packages',
             subLinks: [
-                { name: 'Package 01', href: '/packages/package-01', icon: PackageIcon, description: 'Convert text to slides' },
-                { name: 'Package 02', href: '/packages/package-02', icon: PackageIcon, description: 'Convert images to slides' },
-                { name: 'Package 03', href: '/packages/package-03', icon: PackageIcon, description: 'Convert videos to slides' },
-                { name: 'Package 04', href: '/packages/package-04', icon: PackageIcon, description: 'Convert audio to slides' },
-                { name: 'Package 05', href: '/packages/package-05', icon: PackageIcon, description: 'Generate slides from ideas' },
+                { name: 'Package 01', href: '/packages/package-01', icon: FlowerIcon, description: 'Convert text to slides' },
+                { name: 'Package 02', href: '/packages/package-02', icon: FlowerIcon, description: 'Convert images to slides' },
+                { name: 'Package 03', href: '/packages/package-03', icon: FlowerIcon, description: 'Convert videos to slides' },
+                { name: 'Package 04', href: '/packages/package-04', icon: FlowerIcon, description: 'Convert audio to slides' },
+                { name: 'Package 05', href: '/packages/package-05', icon: FlowerIcon, description: 'Generate slides from ideas' },
             ],
         },
         { name: 'Gallery', href: '/gallery' },
@@ -65,8 +65,8 @@ export default function Navbar() {
                     ))}
                 </div>
 
-                <Link href='/signup' className='hidden rounded-full btn px-8 py-2.5 font-medium text-white transition hover:opacity-90 md:inline-block'>
-                    Sign Up
+                <Link href='/booking' className='hidden rounded-full btn px-8 py-2.5 font-medium text-white transition hover:opacity-90 md:inline-block'>
+                    Book Now
                 </Link>
 
                 <button onClick={() => setIsOpen(true)} className='transition active:scale-90 md:hidden'>
@@ -101,8 +101,8 @@ export default function Navbar() {
                     </div>
                 ))}
 
-                <Link href='/signup' className='rounded-full btn px-8 py-2.5 font-medium text-white transition hover:opacity-90' onClick={() => setIsOpen(false)}>
-                    Sign Up
+                <Link href='/booking' className='rounded-full btn px-8 py-2.5 font-medium text-white transition hover:opacity-90' onClick={() => setIsOpen(false)}>
+                    Book Now
                 </Link>
 
                 <button onClick={() => setIsOpen(false)} className='rounded-md btn p-2 text-white ring-white active:ring-2'>

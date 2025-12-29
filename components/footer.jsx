@@ -1,4 +1,4 @@
-import { DribbbleIcon, LinkedinIcon, TwitterIcon, YoutubeIcon } from "lucide-react";
+import { DribbbleIcon, Facebook, FacebookIcon, InstagramIcon, LinkedinIcon, PhoneCallIcon, PhoneIcon, TwitterIcon, YoutubeIcon } from "lucide-react";
 
 export default function Footer() {
 
@@ -6,30 +6,30 @@ export default function Footer() {
         {
             title: 'Company',
             links: [
-                { title: 'About us', href: '#about-us' },
-                { title: 'Our vision', href: '#our-vision' },
-                { title: 'Community', href: '#community' },
-                { title: 'Careers', href: '#careers' },
-                { title: 'Term & conditions', href: '#term-and-conditions' },
-                { title: 'Privacy', href: '#privacy' },
+                { title: 'About us', href: '/about' },
+                { title: 'Our Vision', href: '/our-vision' },
+                { title: 'Gallery', href: '/gallery' },
+                { title: 'Packages', href: '/packages' },
+                { title: 'Term & conditions', href: '/term-and-conditions' },
+                { title: 'Privacy Policy', href: '/privacy-policy' },
             ],
         },
         {
             title: 'Account',
             links: [
-                { title: 'Settings', href: '#settings' },
-                { title: 'Refund policy', href: '#refund-policy' },
-                { title: 'Affiliates', href: '#affiliates' },
-                { title: 'Gift cards', href: '#gift-cards' },
+                { title: 'Book an Event', href: '/book-an-event' },
+                { title: 'Refund policy', href: '/refund-policy' },
+                { title: 'Gift Cards', href: '/gift-cards' },
+                { title: 'Contact Us', href: '/contact' },
             ],
         },
         {
             title: 'Contact',
             links: [
-                { title: 'Contact us', href: '#contact-us' },
-                { title: 'Instagram', href: '#instagram' },
-                { title: 'Linkedin', href: '#linkedin' },
-                { title: 'Github', href: '#github' },
+                { title: 'Contact us', href: '/contact' },
+                { title: 'Facebook', href: '/facebook' },
+                { title: 'Instagram', href: '/instagram' },
+                { title: 'Twitter', href: '/twitter' },
             ],
         },
     ];
@@ -64,7 +64,7 @@ export default function Footer() {
                 <div className="max-w-80 md:ml-40">
                     <p className='font-semibold text-gray-800'>Sign up for newsletter</p>
                     <p className='mt-5 text-sm'>
-                        The latest news, articles and resources, sent to your inbox weekly.
+                        Get the latest event inspiration, decor ideas, special offers, and Bloomdecous updates.
                     </p>
                     <div className='flex items-center mt-4'>
                         <input type="email" className='bg-white w-full border border-gray-300 h-9 px-3 outline-none' />
@@ -77,17 +77,17 @@ export default function Footer() {
             <div className="flex flex-col md:flex-row py-7 mt-12 border-gray-200 md:justify-between max-md:items-center border-t max-md:text-center gap-2 items-end">
                 <p className="text-center">© 2025 <a href="https://prebuiltui.com?utm_source=material">Bloomadecous, All rights reserved.</a></p>
                 <div className="flex items-center gap-4">
-                    <a href="https://dribbble.com/prebuiltui" target="_blank" rel="noreferrer">
-                        <DribbbleIcon className="size-5 text-gray-400 hover:text-[#b19316]" />
+                    <a href="https://www.facebook.com/prebuiltui" target="_blank" rel="noreferrer">
+                        <FacebookIcon className="size-5 text-gray-400 hover:text-[#b19316]" />
                     </a>
-                    <a href="https://www.linkedin.com/company/prebuiltui" target="_blank" rel="noreferrer">
-                        <LinkedinIcon className="size-5 text-gray-400 hover:text-[#b19316]" />
+                    <a href="https://www.instagram.com/prebuiltui" target="_blank" rel="noreferrer">
+                        <InstagramIcon className="size-5 text-gray-400 hover:text-[#b19316]" />
                     </a>
                     <a href="https://x.com/prebuiltui" target="_blank" rel="noreferrer">
                         <TwitterIcon className="size-5 text-gray-400 hover:text-[#b19316]" />
                     </a>
                     <a href="https://www.youtube.com/@prebuiltui" target="_blank" rel="noreferrer">
-                        <YoutubeIcon className="size-6 text-gray-400 hover:text-[#b19316]" />
+                        <PhoneIcon className="size-5 text-gray-400 hover:text-[#b19316]" />
                     </a>
                 </div>
             </div>

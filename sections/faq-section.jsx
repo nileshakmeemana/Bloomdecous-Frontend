@@ -8,28 +8,28 @@ export default function FaqSection() {
     const [isOpen, setIsOpen] = useState(false);
     const data = [
         {
-            question: 'Do I need coding or design experience to use PrebuiltUI?',
-            answer: "Basic coding knowledge (HTML/CSS, Tailwind) helps, but advanced design skills aren't required. You can use components as-is or customize them.",
+            question: 'What types of events does Bloomdecous specialize in?',
+            answer: "We specialize in a wide range of events including weddings, birthdays, corporate events, baby showers, and more. Our team is experienced in creating beautiful and memorable setups tailored to your specific occasion.",
         },
         {
-            question: 'What is PrebuiltUI and how does it help developers and designers?',
-            answer: 'PrebuiltUI provides ready-to-use, customizable UI components and templates, saving time for developers and designers.',
+            question: 'Do you customize event themes and color palettes?',
+            answer: 'Yes! All our setups are fully customizable. You can choose your preferred colors, theme, and overall style to match your celebration.',
         },
         {
-            question: 'Can I use PrebuiltUI components in my existing project?',
-            answer: 'Yes, components can be integrated into HTML, React, Next.js, Vue, and other projects using Tailwind CSS.',
+            question: 'What types of events does Bloomdecous specialize in?',
+            answer: 'We specialize in a wide range of events including weddings, birthdays, corporate events, baby showers, and more. Our team is experienced in creating beautiful and memorable setups tailored to your specific occasion.',
         },
         {
-            question: 'How customizable are the generated components?',
-            answer: 'Components are highly customizable with Tailwind utility classes, theming, and structural adjustments.',
+            question: 'Do you handle delivery, setup, and breakdown?',
+            answer: 'Yes, we provide delivery, setup, and breakdown services to ensure a hassle-free experience for our clients.',
         },
         {
-            question: 'Does PrebuiltUI support team collaboration?',
-            answer: "There's no clear documentation on built-in collaboration features. Check their support for team options.",
+            question: 'Can I add extra décor items to a package?',
+            answer: "Yes. We offer a wide range of add-ons including centerpieces, shimmer walls, neon signs, luxury seating, marquee numbers, and more.",
         },
         {
-            question: 'Can I try PrebuiltUI before purchasing a plan?',
-            answer: 'Yes, you can try PrebuiltUI with full access to features.',
+            question: 'How far in advance should I book?',
+            answer: 'We recommend booking at least 4-6 weeks in advance to ensure availability and ample time for planning and customization.',
         },
     ];
 

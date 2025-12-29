@@ -29,7 +29,9 @@ const MarqueeCards = () => {
   ];
 
   return (
-    <section className="my-20">
+    <section className="">
+      
+      <h1 className="text-3xl font-semibold text-center mx-auto mb-16">Explore More on Instagram</h1>
       <style jsx>{`
         .marquee-inner {
           animation: marqueeScroll linear infinite;
