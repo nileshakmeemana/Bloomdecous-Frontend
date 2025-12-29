@@ -1,17 +1,45 @@
 'use client';
 
 import { ArrowRightIcon, CheckIcon, CopyIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export default function HeroSection() {
 
-    const logos = [
-        '/companies-logo/instagram.svg',
-        '/companies-logo/framer.svg',
-        '/companies-logo/microsoft.svg',
-        '/companies-logo/huawei.svg',
-        '/companies-logo/walmart.svg',
-    ]
+
+    const svgAssets = [
+        { src: '/assets/Asset 1.svg', alt: 'Decorative accent 1' },
+        { src: '/assets/Asset 2.svg', alt: 'Decorative accent 2' },
+        { src: '/assets/Asset 3.svg', alt: 'Decorative accent 3' },
+        { src: '/assets/Asset 4.svg', alt: 'Decorative accent 4' },
+    ];
+
+    const [totalFlowers, setTotalFlowers] = useState(50);
+
+    useEffect(() => {
+        const updateCount = () => {
+            const isTabletOrBelow = typeof window !== 'undefined' && window.innerWidth < 1024;
+            setTotalFlowers(isTabletOrBelow ? 15 : 50);
+        };
+        updateCount();
+        window.addEventListener('resize', updateCount);
+        return () => window.removeEventListener('resize', updateCount);
+    }, []);
+
+    const decorations = useMemo(() => {
+        return Array.from({ length: totalFlowers }, (_, i) => {
+            const asset = svgAssets[Math.floor(Math.random() * svgAssets.length)];
+            return {
+                ...asset,
+                rotation: Math.floor(Math.random() * 61) - 30, // -30deg to +30deg
+                top: Math.random() * 100,
+                left: Math.random() * 100,
+                scale: 0.6 + Math.random() * 1.2, // size variance 0.6x to 1.8x
+                duration: 30 + Math.random() * 30, // 30s to 60s spin
+                delay: Math.random() * 1.2, // stagger entrance
+                key: `${asset.src}-${i}-${Math.random().toString(36).slice(2, 7)}`,
+            };
+        });
+    }, [svgAssets, totalFlowers]);
 
     const handleCopy = () => {
         setIsCopied(true);
@@ -23,6 +51,12 @@ export default function HeroSection() {
 
     return (
         <section className="flex flex-col items-center justify-center relative h-150 overflow-hidden">
+            <style jsx global>{`
+                @keyframes flower-spin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+            `}</style>
             <svg className="absolute inset-0 -z-10" width="100vw" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#a)">
                     <ellipse cx="271.282" cy="200.379" rx="271.282" ry="200.379" fill="#FBFFE1" />
@@ -63,36 +97,56 @@ export default function HeroSection() {
                     </linearGradient>
                 </defs>
             </svg>
-            <div className="flex flex-wrap items-center justify-center p-1.5 rounded-full border border-indigo-100">
-                <div className="flex items-center -space-x-3">
-                    <img className="size-7 rounded-full border-3 border-white"
-                        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=50" alt="userImage1" />
-                    <img className="size-7 rounded-full border-3 border-white"
-                        src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=50" alt="userImage2" />
-                    <img className="size-7 rounded-full border-3 border-white"
-                        src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=50&h=50&auto=format&fit=crop"
-                        alt="userImage3" />
-                </div>
-                <p className="pl-2 pr-3 text-gray-600">Trusted by 1,000+ Happy Event Clients</p>
+            <div className="pointer-events-none absolute inset-0 z-0">
+                {decorations.map((item) => (
+                    <div
+                        key={item.key}
+                        className="absolute"
+                        style={{
+                            top: `${item.top}%`,
+                            left: `${item.left}%`,
+                            transform: `translate(-50%, -50%)`,
+                            animation: `flower-spin ${item.duration}s linear infinite`,
+                        }}
+                    >
+                        <img
+                            src={item.src}
+                            alt={item.alt}
+                            className="h-10 w-auto select-none opacity-70"
+                            style={{ transform: `rotate(${item.rotation}deg) scale(${item.scale})` }}
+                        />
+                    </div>
+                ))}
             </div>
 
-            <h1
-                className="text-3xl md:text-5xl/18 text-center font-semibold max-w-2xl mt-5 bg-gradient-to-r from-black to-[#748298] text-transparent bg-clip-text">
-                Create Beautiful Moments with{" "}
-                <span className="bg-[#b19316] bg-clip-text text-transparent">Bloomdecous.</span>
-            </h1>
-            <p className="text-slate-600 md:text-base max-md:px-2 text-center max-w-lg mt-3">
-                A luxury event styling service creating unforgettable celebrations with custom décor and balloon artistry.
-            </p>
+            <div className="relative z-10 flex flex-col items-center justify-center w-full">
+                <div className="flex flex-wrap items-center justify-center p-1.5 rounded-full border border-indigo-100">
+                    <div className="flex items-center -space-x-3">
+                        <img className="size-7 rounded-full border-3 border-white"
+                            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=50" alt="userImage1" />
+                        <img className="size-7 rounded-full border-3 border-white"
+                            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=50" alt="userImage2" />
+                        <img className="size-7 rounded-full border-3 border-white"
+                            src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=50&h=50&auto=format&fit=crop"
+                            alt="userImage3" />
+                    </div>
+                    <p className="pl-2 pr-3 text-gray-600">Trusted by 1,000+ Happy Event Clients</p>
+                </div>
 
-            <button
-                className="flex items-center gap-2 btn hover:opacity-90 text-white px-8 py-3 mt-8 rounded-full transition">
-                <span>View Packages</span>
-                <ArrowRightIcon className='size-5' />
-            </button>
+                <h1
+                    className="text-3xl md:text-5xl/18 text-center font-semibold max-w-2xl mt-5 bg-gradient-to-r from-black to-[#748298] text-transparent bg-clip-text">
+                    Create Beautiful Moments with{" "}
+                    <span className="bg-[#b19316] bg-clip-text text-transparent">Bloomdecous.</span>
+                </h1>
+                <p className="text-slate-600 md:text-base max-md:px-2 text-center max-w-lg mt-3">
+                    A luxury event styling service creating unforgettable celebrations with custom décor and balloon artistry.
+                </p>
 
-            <div className="flex flex-wrap justify-between max-sm:justify-center gap-10 max-w-4xl w-full mx-auto py-16" id="logo-container">
-                {logos.map((logo, index) => <img key={index} src={logo} alt="logo" className="h-7 w-auto max-w-xs" />)}
+                <button
+                    className="flex items-center gap-2 btn hover:opacity-90 text-white px-8 py-3 mt-8 rounded-full transition">
+                    <span>View Packages</span>
+                    <ArrowRightIcon className='size-5' />
+                </button>
             </div>
         </section >
     );

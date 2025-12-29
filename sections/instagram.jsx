@@ -31,7 +31,7 @@ const MarqueeCards = () => {
   return (
     <section className="">
       
-      <h1 className="text-3xl font-semibold text-center mx-auto mb-16">Explore More on Instagram</h1>
+      <h1 className="text-3xl font-semibold text-center mx-auto mt-25 mb-10">Explore More on Instagram</h1>
       <style jsx>{`
         .marquee-inner {
           animation: marqueeScroll linear infinite;

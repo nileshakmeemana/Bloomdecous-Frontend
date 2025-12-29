@@ -2,8 +2,8 @@
 
 const SearchSection = () => {
   return (
-    <section className="w-full flex justify-center py-10 bg-gray-100">
-      <form className="bg-white text-gray-500 rounded-lg px-6 py-4 flex flex-col md:flex-row max-md:items-start gap-4 max-md:mx-auto">
+    <section className="w-full flex justify-center">
+      <form className=" bg-white text-gray-500 rounded-lg px-6 py-4 flex flex-col md:flex-row max-md:items-start gap-4 max-md:mx-auto">
 
         <div>
           <div className="flex items-center gap-2">

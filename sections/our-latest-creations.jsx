@@ -20,7 +20,7 @@ export default function OurLatestCreations() {
         },
     ];
     return (
-        <section className="flex flex-col items-center justify-center mt-40">
+        <section className="flex flex-col items-center justify-center mt-30">
             <SectionTitle title="Our Latest Creations" subtitle="A showcase of beautifully styled celebrations, designed with intention, emotion, and attention to detail.  " />
             <div className="flex flex-wrap items-center justify-center gap-10 mt-16">
                 {data.map((item, index) => (

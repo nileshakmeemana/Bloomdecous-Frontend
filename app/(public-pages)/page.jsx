@@ -10,7 +10,7 @@ import Pricing from '@/sections/pricing';
 
 export default function Page() {
     return (
-        <main className='px-4'>
+        <main className=''>
             <HeroSection />
             <WhatWeDoSection />
             <OurLatestCreations />

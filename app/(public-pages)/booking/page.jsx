@@ -9,7 +9,6 @@ export const metadata = {
 export default function BookingPage() {
     return (
         <main className="">
-            <SearchSection />
             <Booking />
         </main>
     );
