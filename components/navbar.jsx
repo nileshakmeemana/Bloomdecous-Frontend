@@ -11,16 +11,7 @@ export default function Navbar() {
 
     const links = [
         { name: 'Home', href: '/' },
-        {
-            name: 'Packages', href: '/packages',
-            subLinks: [
-                { name: 'Package 01', href: '/packages/package-01', icon: FlowerIcon, description: 'Convert text to slides' },
-                { name: 'Package 02', href: '/packages/package-02', icon: FlowerIcon, description: 'Convert images to slides' },
-                { name: 'Package 03', href: '/packages/package-03', icon: FlowerIcon, description: 'Convert videos to slides' },
-                { name: 'Package 04', href: '/packages/package-04', icon: FlowerIcon, description: 'Convert audio to slides' },
-                { name: 'Package 05', href: '/packages/package-05', icon: FlowerIcon, description: 'Generate slides from ideas' },
-            ],
-        },
+        {name: 'Packages', href: '/packages',},
         { name: 'Gallery', href: '/gallery' },
         { name: 'About', href: '/about' },
         { name: 'Contact', href: '/contact' },

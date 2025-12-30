@@ -42,7 +42,7 @@ export default function PackageBlocks() {
                         <p>Basic code review</p>
                     </li>
                 </ul>
-                <button type="button" className="bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
+                <button type="button" className=" cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
                     Book Now
                 </button>
             </div>
@@ -87,7 +87,7 @@ export default function PackageBlocks() {
                         <p>Basic code review</p>
                     </li>
                 </ul>
-                <button type="button" className="bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
+                <button type="button" className=" cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
                     Book Now
                 </button>
             </div>
@@ -130,7 +130,7 @@ export default function PackageBlocks() {
                         <p>Basic code review</p>
                     </li>
                 </ul>
-                <button type="button" className="bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
+                <button type="button" className=" cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
                     Book Now
                 </button>
             </div>
@@ -173,7 +173,7 @@ export default function PackageBlocks() {
                         <p>Basic code review</p>
                     </li>
                 </ul>
-                <button type="button" className="bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
+                <button type="button" className=" cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
                     Book Now
                 </button>
             </div>
@@ -216,7 +216,7 @@ export default function PackageBlocks() {
                         <p>Basic code review</p>
                     </li>
                 </ul>
-                <button type="button" className="bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
+                <button type="button" className="cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
                     Book Now
                 </button>
             </div>

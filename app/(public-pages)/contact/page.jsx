@@ -1,3 +1,4 @@
+import Booking from '@/sections/booking';
 import Contact from '@/sections/contact';
 
 export const metadata = {
@@ -8,6 +9,7 @@ export const metadata = {
 export default function ContactPage() {
     return (
         <main className="px-4">
+            <Booking />
             <Contact />
         </main>
     );

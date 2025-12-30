@@ -1,7 +1,4 @@
-import Package01 from '@/sections/Package01';
-import Addons from '@/sections/addon';
-import SearchSection from '@/sections/bookdate';
-import { Search } from 'lucide-react';
+import PackageContent from './PackageContent';
 
 export const metadata = {
     title: 'Package One',
@@ -11,8 +8,7 @@ export const metadata = {
 export default function PackageOne() {
     return (
         <main className="px-4">
-            <Package01 />
-            <Addons />
+            <PackageContent />
         </main>
     );
 }
