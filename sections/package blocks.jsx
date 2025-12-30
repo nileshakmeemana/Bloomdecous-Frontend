@@ -1,4 +1,9 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
+
 export default function PackageBlocks() {
+    const router = useRouter();
     return (
         <div className="grid border rounded-lg max-w-6xl mx-auto border-gray-200/70 grid-cols-1 divide-y divide-gray-200/70 lg:grid-cols-3 lg:divide-x lg:divide-y-0" >
             <div className="flex flex-col items-start gap-4 hover:bg-gray-50 transition duration-300 p-8 pb-14">
@@ -42,7 +47,7 @@ export default function PackageBlocks() {
                         <p>Basic code review</p>
                     </li>
                 </ul>
-                <button type="button" className=" cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
+                <button type="button" onClick={() => router.push('/package')} className="cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
                     Book Now
                 </button>
             </div>
@@ -87,7 +92,7 @@ export default function PackageBlocks() {
                         <p>Basic code review</p>
                     </li>
                 </ul>
-                <button type="button" className=" cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
+                <button type="button" onClick={() => router.push('/package')} className="cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
                     Book Now
                 </button>
             </div>
@@ -130,7 +135,7 @@ export default function PackageBlocks() {
                         <p>Basic code review</p>
                     </li>
                 </ul>
-                <button type="button" className=" cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
+                <button type="button" onClick={() => router.push('/package')} className="cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
                     Book Now
                 </button>
             </div>
@@ -173,7 +178,7 @@ export default function PackageBlocks() {
                         <p>Basic code review</p>
                     </li>
                 </ul>
-                <button type="button" className=" cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
+                <button type="button" onClick={() => router.push('/package')} className="cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
                     Book Now
                 </button>
             </div>
@@ -216,7 +221,7 @@ export default function PackageBlocks() {
                         <p>Basic code review</p>
                     </li>
                 </ul>
-                <button type="button" className="cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
+                <button type="button" onClick={() => router.push('/package')} className="cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
                     Book Now
                 </button>
             </div>

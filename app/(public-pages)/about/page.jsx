@@ -1,6 +1,6 @@
-import WhatWeDoSection from '@/sections/what-we-do-section';
 import AboutGrid from '@/sections/about grid';
 import AboutLatest from '@/sections/about latest';
+
 
 export const metadata = {
     title: 'About',
@@ -10,9 +10,8 @@ export const metadata = {
 export default function About() {
     return (
         <main className="px-4">
-            <WhatWeDoSection />
-            <AboutGrid />
             <AboutLatest />
+            <AboutGrid />
         </main>
     );
 }

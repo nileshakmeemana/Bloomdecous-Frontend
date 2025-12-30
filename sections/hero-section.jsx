@@ -1,9 +1,11 @@
 'use client';
+import { useRouter } from "next/navigation";
 
 import { ArrowRightIcon, CheckIcon, CopyIcon } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
 export default function HeroSection() {
+    const router = useRouter();
 
 
     const svgAssets = [
@@ -142,9 +144,9 @@ export default function HeroSection() {
                     A luxury event styling service creating unforgettable celebrations with custom décor and balloon artistry.
                 </p>
 
-                <button
+                <button onClick={() => router.push('/package')}
                     className="flex items-center gap-2 btn hover:opacity-90 text-white px-8 py-3 mt-8 rounded-full transition">
-                    <span>View Packages</span>
+                    <span onClick={() => router.push('/package')}>View Packages</span>
                     <ArrowRightIcon className='size-5' />
                 </button>
             </div>

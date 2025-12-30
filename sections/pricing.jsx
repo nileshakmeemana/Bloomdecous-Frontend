@@ -1,4 +1,9 @@
+'use client';
+import { useRouter } from 'next/navigation';
+
 export default function Pricing() {
+    const router = useRouter();
+
     return (
         <section className="flex flex-col items-center justify-center mt-40 mb-40">
              <div>
@@ -41,8 +46,8 @@ export default function Pricing() {
                         <p>Basic code review</p>
                     </li>
                 </ul>
-                <button type="button" className="bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
-                    Get Started
+                <button type="button" onClick={() => router.push('/package')} className=" cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
+                    Book Now
                 </button>
             </div>
         
@@ -94,8 +99,8 @@ export default function Pricing() {
                         <p>Job assistance</p>
                     </li>
                 </ul>
-                <button type="button" className="bg-white text-sm w-full py-2 rounded text-[#b19316] font-medium mt-7 hover:bg-gray-200 transition-all">
-                    Get Started
+                <button type="button" onClick={() => router.push('/package')} className=" cursor-pointer bg-white text-sm w-full py-2 rounded text-[#b19316] font-medium mt-7 hover:bg-gray-200 transition-all">
+                    Book Now
                 </button>
             </div>
         
@@ -146,8 +151,8 @@ export default function Pricing() {
                         <p>Job guarantee</p>
                     </li>
                 </ul>
-                <button type="button" className="bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
-                    Get Started
+                <button type="button" onClick={() => router.push('/package')} className=" cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
+                    Book Now
                 </button>
             </div>
         </div>

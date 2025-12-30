@@ -24,7 +24,7 @@ export default function FaqSection() {
             answer: 'Yes, we provide delivery, setup, and breakdown services to ensure a hassle-free experience for our clients.',
         },
         {
-            question: 'Can I add extra décor items to a package?',
+            question: 'Can I add extra decor items to a package?',
             answer: "Yes. We offer a wide range of add-ons including centerpieces, shimmer walls, neon signs, luxury seating, marquee numbers, and more.",
         },
         {

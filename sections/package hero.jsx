@@ -1,4 +1,8 @@
+'use client';
+import { useRouter } from 'next/navigation';
+
 export default function PackageHero() {
+    const router = useRouter(); 
     return (
         <section className="py-12 md:py-20">
             <div className="max-w-6xl mx-2 md:mx-auto p-px rounded-2xl bg-gradient-to-r from-[#b19316]/20 to-[#b19316]/30">
@@ -12,7 +16,7 @@ export default function PackageHero() {
                         & Beautiful Decor!
                     </h2>
                     <p className="text-slate-500 mt-2 max-w-lg max-md:text-sm">Create unforgettable moments with thoughtfully designed event packages, custom decor, and seamless setup from start to finish.</p>
-                    <button type="button" className=" cursor-pointer bg-[#b19316] to-blue-500 text-white text-sm px-5 py-2.5 rounded-xl font-medium mt-4 hover:scale-105 active:scale-95 transition-all duration-300">
+                    <button type="button" onClick={() => router.push('/contact')} className=" cursor-pointer bg-[#b19316] to-blue-500 text-white text-sm px-5 py-2.5 rounded-xl font-medium mt-4 hover:scale-105 active:scale-95 transition-all duration-300">
                         Get Your Quote Today
                     </button>
                 </div>

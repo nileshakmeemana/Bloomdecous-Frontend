@@ -10,7 +10,6 @@ export default function ContactPage() {
     return (
         <main className="px-4">
             <Booking />
-            <Contact />
         </main>
     );
 }
