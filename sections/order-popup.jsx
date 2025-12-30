@@ -1,6 +1,6 @@
 export default function Popup({ onClose }) {
     return (
-        <div className="md:grid md:grid-cols-2 max-w-4xl bg-white mx-4 md:mx-auto rounded-xl">
+        <div className="md:grid md:grid-cols-2 max-w-5xl bg-white mx-4 md:mx-auto rounded-xl">
             <img src="/assets/roses.jpg"
                 alt="roses" className="hidden md:block w-full max-w-lg rounded-l-xl h-full" />
             <div className="relative flex items-center justify-center">
@@ -17,7 +17,7 @@ export default function Popup({ onClose }) {
                 <div className="max-md:py-14 py-10 px-6 md:px-10 w-full">
                     <p className="text-sm font-medium text-[#b19316] text-center md:text-left">Request a quote</p>
                     <h1 className="text-3xl font-semibold text-slate-800 text-center md:text-left mt-1">Tell us about your event</h1>
-                    <p className="mt-3 text-gray-500 text-center md:text-left">Share your details and we’ll get back to craft the perfect package for you.</p>
+                    <p className="mt-3 text-gray-500 text-center md:text-left">Share your details and we'll get back to craft the perfect package for you.</p>
 
                     <form className="mt-8 space-y-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -35,10 +35,19 @@ export default function Popup({ onClose }) {
                             <label className="text-black/70" htmlFor="quote-phone">Phone (optional)</label>
                             <input id="quote-phone" name="phone" className="h-11 px-3 mt-2 w-full border border-gray-300 rounded outline-none focus:border-[#b19316]" type="tel" placeholder="(+1) 555-123-4567" />
                         </div>
+                        <div className="flex flex-col text-sm">
+                            <label className="text-black/70" htmlFor="quote-phone">Address</label>
+                            <input id="quote-phone" name="phone" className="h-11 px-3 mt-2 w-full border border-gray-300 rounded outline-none focus:border-[#b19316]" type="text" placeholder="123 Main St, City, State, ZIP" />
+                        </div>
 
                         <div className="flex flex-col text-sm">
-                            <label className="text-black/70" htmlFor="quote-message">Event Details</label>
-                            <textarea id="quote-message" name="message" className="w-full mt-2 p-3 h-28 border border-gray-300 rounded resize-none outline-none focus:border-[#b19316]" placeholder="Event type, date, location, special requests" required></textarea>
+                            <label className="text-black/70" htmlFor="quote-message">Event Location</label>
+                            <textarea id="quote-message" name="message" className="w-full mt-2 p-3 h-11 border border-gray-300 rounded resize-none outline-none focus:border-[#b19316] overflow-hidden"></textarea>
+                        </div>
+                        <div className="flex flex-col text-sm">
+                            <label className="text-black/70" htmlFor="quote-message">Date and Time</label>
+                            <input id="quote-phone" name="phone" className="h-11 px-3 mt-2 w-full border border-gray-300 rounded outline-none focus:border-[#b19316]" type="datetime-local" />
+
                         </div>
 
                         <div className="flex items-center gap-3 text-sm">
