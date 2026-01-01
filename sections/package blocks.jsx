@@ -1,231 +1,98 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function PackageBlocks() {
     const router = useRouter();
+    const [packages, setPackages] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        const fetchPackages = async () => {
+            try {
+                const res = await fetch(
+                    'http://localhost/Bloomdecous-Backend/API/Public/getAllPackageData.php'
+                );
+
+                if (!res.ok) throw new Error('Fetch failed');
+
+                const data = await res.json();
+                setPackages(data);
+            } catch (err) {
+                console.error(err);
+                setError(true);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchPackages();
+    }, []);
+
+    if (loading) {
+        return <div className="text-center py-20 text-gray-500">Loading packages...</div>;
+    }
+
+    if (error) {
+        return <div className="text-center py-20 text-red-500">Failed to load packages.</div>;
+    }
+
     return (
-        <div className="grid border rounded-lg max-w-6xl mx-auto border-gray-200/70 grid-cols-1 divide-y divide-gray-200/70 lg:grid-cols-3 lg:divide-x lg:divide-y-0" >
-            <div className="flex flex-col items-start gap-4 hover:bg-gray-50 transition duration-300 p-8 pb-14">
-                <div className="flex items-center gap-2 text-gray-500">
-                    <h2 className="font-medium text-base">AI Layout Generator</h2>
-                </div>
-                <h1 className="text-3xl font-semibold">$79<span className="text-sm font-normal">/month</span></h1>
+        <div className="grid border rounded-lg max-w-6xl mx-auto border-gray-200/70 grid-cols-1 divide-y divide-gray-200/70 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+            {packages.map((pkg) => {
+                const cleanedDescription = pkg.Package_Description.replace(/<\/?ul>/g, '');
 
-                <p className="text-gray-500 text-sm/6 max-w-72">
-                    Automatically creates a complete website layout from a single prompt.
-                </p>
-                <ul className="list-none text-gray-500 text-sm mt-6 space-y-1">
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Access to all basic courses</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Community support</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>10 practice projects</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Course completion certificate</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Basic code review</p>
-                    </li>
-                </ul>
-                <button type="button" onClick={() => router.push('/package')} className="cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
-                    Book Now
-                </button>
-            </div>
-            <div className="flex flex-col items-start gap-4 hover:bg-gray-50 transition duration-300 p-8 pb-14">
-                <div className="flex items-center gap-2 text-gray-500">
-                    <h2 className="font-medium text-base">AI Content Writer</h2>
-                </div>
-                <h1 className="text-3xl font-semibold">$79<span className="text-sm font-normal">/month</span></h1>
+                return (
+                    <div
+                        key={pkg.Package_Id}
+                        className="flex flex-col items-start gap-4 hover:bg-gray-50 transition duration-300 p-8 pb-14 h-full"
+                    >
+                        <div className="flex-1 flex flex-col gap-4 w-full">
+                            <div className="flex items-center gap-2 text-gray-500">
+                                <h2 className="font-medium text-base">
+                                    {pkg.Package_Name}
+                                </h2>
+                            </div>
 
-                <p className="text-gray-500 text-sm/6 max-w-72">
-                    Generates high-quality headlines, text, and call-to-actions instantly.
-                </p>
-                <ul className="list-none text-gray-500 text-sm mt-6 space-y-1">
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Access to all basic courses</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Community support</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>10 practice projects</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Course completion certificate</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Basic code review</p>
-                    </li>
-                </ul>
-                <button type="button" onClick={() => router.push('/package')} className="cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
-                    Book Now
-                </button>
-            </div>
-            <div className="flex flex-col items-start gap-4 hover:bg-gray-50 transition duration-300 p-8 pb-14">
-                <div className="flex items-center gap-2 text-gray-500">
-                    <h2 className="font-medium text-base">Performance Optimization</h2>
-                </div>
-                <h1 className="text-3xl font-semibold">$79<span className="text-sm font-normal">/month</span></h1>
+                            <h1 className="text-3xl font-semibold">
+                                ${pkg.Price}
+                                <span className="text-sm font-normal"> /package</span>
+                            </h1>
 
-                <p className="text-gray-500 text-sm/6 max-w-72">Ensures fast load speed, clean code, and high PageSpeed scores.</p>
-                <ul className="list-none text-gray-500 text-sm mt-6 space-y-1">
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Access to all basic courses</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Community support</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>10 practice projects</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Course completion certificate</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Basic code review</p>
-                    </li>
-                </ul>
-                <button type="button" onClick={() => router.push('/package')} className="cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
-                    Book Now
-                </button>
-            </div>
-            <div className="flex flex-col items-start gap-4 hover:bg-gray-50 transition duration-300 p-8 pb-14">
-                <div className="flex items-center gap-2 text-gray-500">
-                    <h2 className="font-medium text-base">Performance Optimization</h2>
-                </div>
-                <h1 className="text-3xl font-semibold">$79<span className="text-sm font-normal">/month</span></h1>
+                            <ul className="list-none text-gray-500 text-sm mt-6 space-y-1">
+                                <div
+                                    dangerouslySetInnerHTML={{
+                                        __html: cleanedDescription.replace(
+                                            /<li>(.*?)<\/li>/g,
+                                            `
+                                        <li class="flex items-center gap-2">
+                                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
+                                            </svg>
+                                            <p>$1</p>
+                                        </li>
+                                        `
+                                        ),
+                                    }}
+                                />
+                            </ul>
+                        </div>
 
-                <p className="text-gray-500 text-sm/6 max-w-72">Ensures fast load speed, clean code, and high PageSpeed scores.</p>
-                <ul className="list-none text-gray-500 text-sm mt-6 space-y-1">
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Access to all basic courses</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Community support</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>10 practice projects</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Course completion certificate</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Basic code review</p>
-                    </li>
-                </ul>
-                <button type="button" onClick={() => router.push('/package')} className="cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
-                    Book Now
-                </button>
-            </div>
-            <div className="flex flex-col items-start gap-4 hover:bg-gray-50 transition duration-300 p-8 pb-14">
-                <div className="flex items-center gap-2 text-gray-500">
-                    <h2 className="font-medium text-base">Performance Optimization</h2>
-                </div>
-                <h1 className="text-3xl font-semibold">$79<span className="text-sm font-normal">/month</span></h1>
-
-                <p className="text-gray-500 text-sm/6 max-w-72">Ensures fast load speed, clean code, and high PageSpeed scores.</p>
-                <ul className="list-none text-gray-500 text-sm mt-6 space-y-1">
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Access to all basic courses</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Community support</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>10 practice projects</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Course completion certificate</p>
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                        </svg>
-                        <p>Basic code review</p>
-                    </li>
-                </ul>
-                <button type="button" onClick={() => router.push('/package')} className="cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-[#a07f14] transition-all">
-                    Book Now
-                </button>
-            </div>
-            
+                        {/* BOOK NOW WITH PACKAGE ID */}
+                        <button
+                            type="button"
+                            onClick={() =>
+                                router.push(`/package?packageId=${pkg.Package_Id}`)
+                            }
+                            className="cursor-pointer bg-[#b19316] text-sm w-full py-2 rounded text-white font-medium mt-auto hover:bg-[#a07f14] transition-all"
+                        >
+                            Book Now
+                        </button>
+                    </div>
+                );
+            })}
         </div>
     );
-};
+}
