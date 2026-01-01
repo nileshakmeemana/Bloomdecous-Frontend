@@ -1,4 +1,22 @@
+import { useRef, useState } from "react";
+import Message from "./message";
+
 export default function Popup({ onClose }) {
+    const [showMessage, setShowMessage] = useState(false);
+    const hideTimer = useRef(null);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if (hideTimer.current) clearTimeout(hideTimer.current);
+        setShowMessage(true);
+        hideTimer.current = setTimeout(() => setShowMessage(false), 3500);
+    };
+
+    const handleToastClose = () => {
+        setShowMessage(false);
+        if (hideTimer.current) clearTimeout(hideTimer.current);
+    };
+
     return (
         <div className="md:grid md:grid-cols-2 max-w-5xl bg-white mx-4 md:mx-auto rounded-xl">
             <img src="/assets/roses.jpg"
@@ -19,7 +37,7 @@ export default function Popup({ onClose }) {
                     <h1 className="text-3xl font-semibold text-slate-800 text-center md:text-left mt-1">Tell us about your event</h1>
                     <p className="mt-3 text-gray-500 text-center md:text-left">Share your details and we'll get back to craft the perfect package for you.</p>
 
-                    <form className="mt-8 space-y-4">
+                    <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="flex flex-col text-sm">
                                 <label className="text-black/70" htmlFor="quote-name">Your Name</label>
@@ -58,6 +76,13 @@ export default function Popup({ onClose }) {
                         <button type="submit" className="w-full md:w-auto cursor-pointer rounded-full bg-[#b19316] text-sm px-10 py-3 text-white font-medium hover:opacity-90 active:scale-95 transition">Send request</button>
                     </form>
                 </div>
+            </div>
+            <div
+                className={`fixed bottom-6 right-6 z-50 transform transition-all duration-300 ease-out ${showMessage ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 pointer-events-none"}`}
+                aria-live="polite"
+                role="status"
+            >
+                <Message onClose={handleToastClose} />
             </div>
         </div>
     );

@@ -1,3 +1,4 @@
+import Message from '@/sections/message';
 import PackageBlocks from '@/sections/package blocks';
 import PackageHero from '@/sections/package hero';
 
