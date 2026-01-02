@@ -61,7 +61,7 @@ export default function Example() {
                     </div>
             
                     <h1 className='text-3xl md:text-[40px]/13 font-medium text-white mb-8 max-w-2xl leading-tight'>
-                        Redefine your brand for a bold,<br className="hidden md:block" /> future-ready presence.
+                        Thoughtfully designed decor <br className="hidden md:block" /> to bring your vision to life.
                     </h1>
         
                 </div>

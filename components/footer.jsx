@@ -36,16 +36,8 @@ export default function Footer() {
     return (
         <footer className="px-4 md:px-16 lg:px-24 text-[13px] mt-32 text-gray-500">
             <div className="flex flex-wrap items-start min-md:justify-between gap-10 md:gap-[60px]">
-                <a href="https://prebuiltui.com?utm_source=material" className="max-w-80">
-                    <svg width="30" height="33" viewBox="0 0 30 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8 4.54907L14.75 8.43392L21.5 4.54907M8 27.8283V20.0736L1.25 16.1887M28.25 16.1887L21.5 20.0736V27.8283M1.655 8.65805L14.75 16.2036L27.845 8.65805M14.75 31.25V16.1887M28.25 22.1654V10.212C28.2495 9.68795 28.1106 9.17326 27.8473 8.71956C27.584 8.26585 27.2056 7.88909 26.75 7.62707L16.25 1.65036C15.7939 1.38808 15.2766 1.25 14.75 1.25C14.2234 1.25 13.7061 1.38808 13.25 1.65036L2.75 7.62707C2.29439 7.88909 1.91597 8.26585 1.65269 8.71956C1.38941 9.17326 1.25054 9.68795 1.25 10.212V22.1654C1.25054 22.6895 1.38941 23.2041 1.65269 23.6578C1.91597 24.1115 2.29439 24.4883 2.75 24.7503L13.25 30.727C13.7061 30.9893 14.2234 31.1274 14.75 31.1274C15.2766 31.1274 15.7939 30.9893 16.25 30.727L26.75 24.7503C27.2056 24.4883 27.584 24.1115 27.8473 23.6578C28.1106 23.2041 28.2495 22.6895 28.25 22.1654Z" stroke="url(#paint0_linear_8073_1433)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                        <defs>
-                            <linearGradient id="paint0_linear_8073_1433" x1="14.75" y1="1.25" x2="14.75" y2="31.25" gradientUnits="userSpaceOnUse">
-                                <stop stopColor="#A2A2A2" />
-                                <stop offset="1" stopColor="#383838" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
+                <a href="/" className="max-w-80">
+                    <img src="/assets/footer.svg" alt="Bloomdecous" width="50" height="50" />
                 </a>
                 {data.map((item, index) => (
                     <div key={index} className="max-w-80">

@@ -8,6 +8,7 @@ export default function Addons({ onOpenPopup }) {
     const packageId = searchParams.get('packageId');
     const [addons, setAddons] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [checkedAddons, setCheckedAddons] = useState({});
 
     useEffect(() => {
         const fetchAddons = async () => {
@@ -45,10 +46,16 @@ export default function Addons({ onOpenPopup }) {
             ) : (
                 <div className="grid border rounded-lg max-w-5xl mx-auto border-gray-200/70 grid-cols-1 divide-y divide-gray-200/70 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
                     {addons.map((addon) => (
-                        <div key={addon.Id} className="cursor-pointer flex flex-col items-start gap-4 hover:bg-gray-50 transition duration-300 p-8 pb-14">
+                        <div 
+                            key={addon.Id} 
+                            onClick={() => setCheckedAddons(prev => ({ ...prev, [addon.Id]: !prev[addon.Id] }))}
+                            className="cursor-pointer flex flex-col items-start gap-4 hover:bg-gray-50 transition duration-300 p-8 pb-14"
+                        >
                             <div className="flex items-center gap-3 text-gray-500">
                                 <input 
                                     type="checkbox" 
+                                    checked={checkedAddons[addon.Id] || false}
+                                    onChange={() => setCheckedAddons(prev => ({ ...prev, [addon.Id]: !prev[addon.Id] }))}
                                     aria-label={`Select ${addon.Addon_Name}`} 
                                     className="h-4 w-4 accent-black cursor-pointer" 
                                 />
