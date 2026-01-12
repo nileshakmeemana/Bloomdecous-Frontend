@@ -138,7 +138,7 @@ export default function HeroSection() {
                 <h1
                     className="text-3xl md:text-5xl/18 text-center font-semibold max-w-2xl mt-5 bg-gradient-to-r from-black to-[#748298] text-transparent bg-clip-text">
                     Create Beautiful Moments with{" "}
-                    <span className="bg-[#b19316] bg-clip-text text-transparent">Bloomdecous.</span>
+                    <span className="bg-[#b19316] bg-clip-text text-transparent">BloomdecoUS.</span>
                 </h1>
                 <p className="text-slate-600 md:text-base max-md:px-2 text-center max-w-lg mt-3">
                     A luxury event styling service creating unforgettable celebrations with custom décor and balloon artistry.

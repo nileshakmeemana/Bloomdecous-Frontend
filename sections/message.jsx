@@ -2,7 +2,13 @@
 
 import { useState, useEffect } from "react";
 
-export default function Message({ onClose, status = "success" }) {
+export default function Message({
+    onClose,
+    status = "success",
+    title,
+    description,
+    className = "",
+}) {
     const isSuccess = status === "success";
     const [isClosing, setIsClosing] = useState(false);
     
@@ -30,7 +36,11 @@ export default function Message({ onClose, status = "success" }) {
         setTimeout(onClose, 300); // Wait for fade-out animation
     };
     
+    const resolvedTitle = title ?? (isSuccess ? "Message successfully sent!" : "Message failed to send");
+    const resolvedDescription = description ?? (isSuccess ? "Wait a moment while we process your request." : "Please try again or contact support.");
+
     return (
+        <div className={`fixed right-4 bottom-4 ${className}`}>
         <div className={`${isSuccess ? "bg-white" : "bg-white"} inline-flex space-x-3 p-3 text-sm rounded border ${isSuccess ? "border-gray-200" : "border-red-200"} shadow-lg transition-opacity duration-300 ${isClosing ? "opacity-0" : "opacity-100 animate-fadeIn"}`}>
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                 {isSuccess ? (
@@ -41,10 +51,10 @@ export default function Message({ onClose, status = "success" }) {
             </svg>
             <div>
                 <h3 className={`${isSuccess ? "text-slate-700" : "text-red-700"} font-medium`}>
-                    {isSuccess ? "Message successfully sent!" : "Message failed to send"}
+                    {resolvedTitle}
                 </h3>
                 <p className={`${isSuccess ? "text-slate-500" : "text-red-500"}`}>
-                    {isSuccess ? "Wait a moment while we process your request." : "Please try again or contact support."}
+                    {resolvedDescription}
                 </p>
             </div>
             <button
@@ -58,6 +68,7 @@ export default function Message({ onClose, status = "success" }) {
                     <rect x="12.531" y="13.914" width="17.498" height="2.1" rx="1.05" transform="rotate(-135.74 12.531 13.914)" fill="currentColor" fillOpacity=".7"/>
                 </svg>
             </button>
+        </div>
         </div>
     );
 };
