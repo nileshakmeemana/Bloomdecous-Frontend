@@ -144,9 +144,9 @@ export default function HeroSection() {
                     A luxury event styling service creating unforgettable celebrations with custom décor and balloon artistry.
                 </p>
 
-                <button onClick={() => router.push('/package')}
+                <button onClick={() => router.push('/packages')}
                     className="flex items-center gap-2 btn hover:opacity-90 text-white px-8 py-3 mt-8 rounded-full transition">
-                    <span onClick={() => router.push('/package')}>View Packages</span>
+                    <span onClick={() => router.push('/packages')}>View Packages</span>
                     <ArrowRightIcon className='size-5' />
                 </button>
             </div>
