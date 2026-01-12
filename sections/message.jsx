@@ -1,8 +1,37 @@
+"use client";
+
+import { useState, useEffect } from "react";
+
 export default function Message({ onClose, status = "success" }) {
     const isSuccess = status === "success";
+    const [isClosing, setIsClosing] = useState(false);
+    
+    useEffect(() => {
+        setIsClosing(false);
+        
+        // Start fade-out animation after 4.7 seconds (0.3s animation + 5s total)
+        const autoHideTimer = setTimeout(() => {
+            setIsClosing(true);
+        }, 4700);
+        
+        // Close after animation completes (5s total)
+        const closeTimer = setTimeout(() => {
+            onClose();
+        }, 5000);
+        
+        return () => {
+            clearTimeout(autoHideTimer);
+            clearTimeout(closeTimer);
+        };
+    }, [onClose, status]);
+
+    const handleClose = () => {
+        setIsClosing(true);
+        setTimeout(onClose, 300); // Wait for fade-out animation
+    };
     
     return (
-        <div className={`${isSuccess ? "bg-white" : "bg-white"} inline-flex space-x-3 p-3 text-sm rounded border ${isSuccess ? "border-gray-200" : "border-red-200"} shadow-lg`}>
+        <div className={`${isSuccess ? "bg-white" : "bg-white"} inline-flex space-x-3 p-3 text-sm rounded border ${isSuccess ? "border-gray-200" : "border-red-200"} shadow-lg transition-opacity duration-300 ${isClosing ? "opacity-0" : "opacity-100 animate-fadeIn"}`}>
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                 {isSuccess ? (
                     <path d="M16.5 8.31V9a7.5 7.5 0 1 1-4.447-6.855M16.5 3 9 10.508l-2.25-2.25" stroke="#22C55E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -21,7 +50,7 @@ export default function Message({ onClose, status = "success" }) {
             <button
                 type="button"
                 aria-label="close"
-                onClick={onClose}
+                onClick={handleClose}
                 className="cursor-pointer mb-auto text-slate-400 hover:text-slate-600 active:scale-95 transition"
             >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
