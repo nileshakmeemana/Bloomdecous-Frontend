@@ -1,12 +1,22 @@
-export default function Message({ onClose }) {
+export default function Message({ onClose, status = "success" }) {
+    const isSuccess = status === "success";
+    
     return (
-        <div className="bg-white inline-flex space-x-3 p-3 text-sm rounded border border-gray-200 shadow-lg">
+        <div className={`${isSuccess ? "bg-white" : "bg-white"} inline-flex space-x-3 p-3 text-sm rounded border ${isSuccess ? "border-gray-200" : "border-red-200"} shadow-lg`}>
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16.5 8.31V9a7.5 7.5 0 1 1-4.447-6.855M16.5 3 9 10.508l-2.25-2.25" stroke="#22C55E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                {isSuccess ? (
+                    <path d="M16.5 8.31V9a7.5 7.5 0 1 1-4.447-6.855M16.5 3 9 10.508l-2.25-2.25" stroke="#22C55E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                ) : (
+                    <path d="M9 1.5a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15zM6 9h6M9 6v6" stroke="#EF4444" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                )}
             </svg>
             <div>
-                <h3 className="text-slate-700 font-medium">Message successfully sent!</h3>
-                <p className="text-slate-500">Wait a moment while we process your request.</p>
+                <h3 className={`${isSuccess ? "text-slate-700" : "text-red-700"} font-medium`}>
+                    {isSuccess ? "Message successfully sent!" : "Message failed to send"}
+                </h3>
+                <p className={`${isSuccess ? "text-slate-500" : "text-red-500"}`}>
+                    {isSuccess ? "Wait a moment while we process your request." : "Please try again or contact support."}
+                </p>
             </div>
             <button
                 type="button"
