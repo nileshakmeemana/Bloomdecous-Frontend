@@ -8,7 +8,7 @@ export default function FaqSection() {
     const [isOpen, setIsOpen] = useState(false);
     const data = [
         {
-            question: 'What types of events does Bloomdecous specialize in?',
+            question: 'What types of events does BloomdecoUS specialize in?',
             answer: "We specialize in a wide range of events including weddings, birthdays, corporate events, baby showers, and more. Our team is experienced in creating beautiful and memorable setups tailored to your specific occasion.",
         },
         {
@@ -16,7 +16,7 @@ export default function FaqSection() {
             answer: 'Yes! All our setups are fully customizable. You can choose your preferred colors, theme, and overall style to match your celebration.',
         },
         {
-            question: 'What types of events does Bloomdecous specialize in?',
+            question: 'What types of events does BloomdecoUS specialize in?',
             answer: 'We specialize in a wide range of events including weddings, birthdays, corporate events, baby showers, and more. Our team is experienced in creating beautiful and memorable setups tailored to your specific occasion.',
         },
         {

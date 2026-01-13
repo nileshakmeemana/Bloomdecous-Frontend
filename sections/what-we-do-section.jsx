@@ -32,9 +32,9 @@ export default function WhatWeDoSection() {
             <div className="text-sm text-slate-600 max-w-md">
                 <h1 className="text-xl uppercase font-semibold text-slate-700">What we do?</h1>
                 <div className="w-24 h-[3px] rounded-full bg-gradient-to-r from-[#b19316] to-[#EDBD0F]"></div>
-                <p className="mt-8">Bloomdecous specializes in creating beautifully styled events through custom balloon decor, elegant backdrops, and luxury event setups tailored to your celebration.</p>
+                <p className="mt-8">BloomdecoUs specializes in creating beautifully styled events through custom balloon decor, elegant backdrops, and luxury event setups tailored to your celebration.</p>
                 <p className="mt-4">Whether you’re hosting a birthday, baby shower, sweet sixteen, or special milestone, our team transforms your vision into a stunning, stress-free experience with professional delivery, setup, and breakdown.</p>
-                <p className="mt-4">From balloon garlands and shimmer walls to neon signs and premium décor accents, Bloomdecous is here to design unforgettable moments with style and care.</p>
+                <p className="mt-4">From balloon garlands and shimmer walls to neon signs and premium décor accents, BloomdecoUs is here to design unforgettable moments with style and care.</p>
                 <button onClick={() => router.push('/about')} className="flex items-center gap-2 mt-8 hover:opacity-90 transition btn py-3 px-8 rounded-full text-white">
                     <span>Read more</span>
                     <ArrowRightIcon className='size-5' />

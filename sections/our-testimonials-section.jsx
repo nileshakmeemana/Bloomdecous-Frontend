@@ -31,7 +31,7 @@ export default function OurTestimonialSection() {
     <section className="flex flex-col items-center justify-center mt-40">
       <SectionTitle
         title="Our Testimonials"
-        subtitle="Discover why clients choose Bloomdecous for elegant, stress-free event décor and unforgettable celebrations."
+        subtitle="Discover why clients choose BloomdecoUS for elegant, stress-free event décor and unforgettable celebrations."
       />
 
       {/* STATES */}

@@ -7,19 +7,14 @@ export default function Footer() {
             title: 'Company',
             links: [
                 { title: 'About us', href: '/about' },
-                { title: 'Our Vision', href: '/our-vision' },
                 { title: 'Gallery', href: '/gallery' },
                 { title: 'Packages', href: '/packages' },
-                { title: 'Term & conditions', href: '/term-and-conditions' },
-                { title: 'Privacy Policy', href: '/privacy-policy' },
             ],
         },
         {
             title: 'Account',
             links: [
-                { title: 'Book an Event', href: '/book-an-event' },
-                { title: 'Refund policy', href: '/refund-policy' },
-                { title: 'Gift Cards', href: '/gift-cards' },
+                { title: 'Book an Event', href: '/packages' },
                 { title: 'Contact Us', href: '/contact' },
             ],
         },
@@ -27,9 +22,8 @@ export default function Footer() {
             title: 'Contact',
             links: [
                 { title: 'Contact us', href: '/contact' },
-                { title: 'Facebook', href: '/facebook' },
-                { title: 'Instagram', href: '/instagram' },
-                { title: 'Twitter', href: '/twitter' },
+                { title: 'Facebook', href: 'https://www.facebook.com/happycakesrandy' },
+                { title: 'Instagram', href: 'https://www.instagram.com/bloomdecous' },
             ],
         },
     ];
@@ -37,7 +31,7 @@ export default function Footer() {
         <footer className="px-4 md:px-16 lg:px-24 text-[13px] mt-32 text-gray-500">
             <div className="flex flex-wrap items-start min-md:justify-between gap-10 md:gap-[60px]">
                 <a href="/" className="max-w-80">
-                    <img src="/assets/footer.svg" alt="Bloomdecous" width="50" height="50" />
+                    <img src="/assets/footer.svg" alt="BloomdecoUS" width="50" height="50" />
                 </a>
                 {data.map((item, index) => (
                     <div key={index} className="max-w-80">
@@ -56,7 +50,7 @@ export default function Footer() {
                 <div className="max-w-80 md:ml-40">
                     <p className='font-semibold text-gray-800'>Sign up for newsletter</p>
                     <p className='mt-5 text-sm'>
-                        Get the latest event inspiration, decor ideas, special offers, and Bloomdecous updates.
+                        Get the latest event inspiration, decor ideas, special offers, and BloomdecoUS updates.
                     </p>
                     <div className='flex items-center mt-4'>
                         <input type="email" className='bg-white w-full border border-gray-300 h-9 px-3 outline-none' />
@@ -67,18 +61,15 @@ export default function Footer() {
                 </div>
             </div>
             <div className="flex flex-col md:flex-row py-7 mt-12 border-gray-200 md:justify-between max-md:items-center border-t max-md:text-center gap-2 items-end">
-                <p className="text-center">© 2025 <a href="https://prebuiltui.com?utm_source=material">Bloomadecous, All rights reserved.</a></p>
+                <p className="text-center">© 2025 <a href="https://prebuiltui.com?utm_source=material">BloomadecoUS, All rights reserved.</a></p>
                 <div className="flex items-center gap-4">
-                    <a href="https://www.facebook.com/prebuiltui" target="_blank" rel="noreferrer">
+                    <a href="https://www.facebook.com/happycakesrandy" target="_blank" rel="noreferrer">
                         <FacebookIcon className="size-5 text-gray-400 hover:text-[#b19316]" />
                     </a>
-                    <a href="https://www.instagram.com/prebuiltui" target="_blank" rel="noreferrer">
+                    <a href="https://www.instagram.com/bloomdecous" target="_blank" rel="noreferrer">
                         <InstagramIcon className="size-5 text-gray-400 hover:text-[#b19316]" />
                     </a>
-                    <a href="https://x.com/prebuiltui" target="_blank" rel="noreferrer">
-                        <TwitterIcon className="size-5 text-gray-400 hover:text-[#b19316]" />
-                    </a>
-                    <a href="https://www.youtube.com/@prebuiltui" target="_blank" rel="noreferrer">
+                    <a href="/contact" target="_blank" rel="noreferrer">
                         <PhoneIcon className="size-5 text-gray-400 hover:text-[#b19316]" />
                     </a>
                 </div>

@@ -3,6 +3,7 @@ import Message from "./message";
 
 export default function Popup({ onClose, packageId, addons }) {
     const [showMessage, setShowMessage] = useState(false);
+    const [isClosing, setIsClosing] = useState(false);
     const hideTimer = useRef(null);
 
     const [formData, setFormData] = useState({
@@ -98,10 +99,6 @@ export default function Popup({ onClose, packageId, addons }) {
         event.preventDefault();
         setLoading(true);
 
-        if (hideTimer.current) clearTimeout(hideTimer.current);
-        setShowMessage(true);
-        hideTimer.current = setTimeout(() => setShowMessage(false), 3500);
-
         try {
             const selectedAddons = addons
                 .filter((addon) => addon.checked)
@@ -166,8 +163,20 @@ export default function Popup({ onClose, packageId, addons }) {
                     confirmationPdfUrl
                 );
 
-                alert("Order placed & confirmation email sent successfully!");
-                onClose();
+                if (hideTimer.current) clearTimeout(hideTimer.current);
+                
+                // Start fade out animation
+                setIsClosing(true);
+                
+                // After fade out completes, show toast
+                setTimeout(() => {
+                    setShowMessage(true);
+                    
+                    // Close popup after toast duration (5 seconds)
+                    hideTimer.current = setTimeout(() => {
+                        onClose();
+                    }, 5000);
+                }, 300); // Match fade out animation duration
             } else {
                 alert(result.message || "Order submission failed!");
             }
@@ -308,6 +317,7 @@ export default function Popup({ onClose, packageId, addons }) {
     const handleToastClose = () => {
         setShowMessage(false);
         if (hideTimer.current) clearTimeout(hideTimer.current);
+        onClose();
     };
 
     const handleInputChange = (e) => {
@@ -319,21 +329,25 @@ export default function Popup({ onClose, packageId, addons }) {
     };
 
     return (
-        <div className="md:grid md:grid-cols-2 max-w-5xl bg-white mx-4 md:mx-auto rounded-xl">
+        <>
+        <div className={`md:grid md:grid-cols-2 max-w-4xl bg-white mx-4 md:mx-auto rounded-xl transition-opacity duration-300 ${isClosing ? 'opacity-0 pointer-events-none' : 'opacity-100 animate-fadeIn'}`}>
             <img
                 src="/assets/roses.jpg"
                 alt="roses"
-                className="hidden md:block w-full max-w-lg rounded-l-xl h-full"
+                className="hidden md:block w-full max-w-md rounded-l-xl h-full object-cover"
             />
             <div className="relative flex items-center justify-center">
                 <button
-                    className="absolute top-6 right-6 bg-gray-200 rounded-full p-2.5 cursor-pointer"
+                    className="absolute top-3 right-3 bg-gray-200 rounded-full p-2 cursor-pointer"
                     aria-label="Close"
-                    onClick={onClose}
+                    onClick={() => {
+                        setIsClosing(true);
+                        setTimeout(() => onClose(), 300);
+                    }}
                 >
                     <svg
-                        width="15"
-                        height="15"
+                        width="12"
+                        height="12"
                         viewBox="0 0 15 15"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -349,24 +363,24 @@ export default function Popup({ onClose, packageId, addons }) {
                     </svg>
                 </button>
 
-                <div className="max-md:py-14 py-10 px-6 md:px-10 w-full">
-                    <p className="text-sm font-medium text-[#b19316] text-center md:text-left">
+                <div className="max-md:py-8 py-6 px-6 md:px-8 w-full">
+                    <p className="text-x font-medium text-[#b19316] text-center md:text-left">
                         Request a quote
                     </p>
-                    <h1 className="text-3xl font-semibold text-slate-800 text-center md:text-left mt-1">
+                    <h1 className="text-2xl font-semibold text-slate-800 text-center md:text-left mt-1">
                         Tell us about your event
                     </h1>
-                    <p className="mt-3 text-gray-500 text-center md:text-left">
-                        Share your details and we'll get back to craft the perfect package for you.
+                    <p className="mt-2 text-sm text-gray-500 text-center md:text-left">
+                        Share your details and we'll get back to you.
                     </p>
 
-                    <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
+                    <form className="mt-4 space-y-2" onSubmit={handleSubmit}>
                         {/* Hidden Package Id */}
                         <input type="hidden" name="packageId" value={packageId} />
 
                         {/* Email */}
-                        <div className="flex flex-col text-sm">
-                            <label className="text-black/70" htmlFor="quote-email">
+                        <div className="flex flex-col text-xs">
+                            <label className="text-black/70 mb-1" htmlFor="quote-email">
                                 Your Email
                             </label>
                             <input
@@ -376,14 +390,14 @@ export default function Popup({ onClose, packageId, addons }) {
                                 value={formData.email}
                                 onChange={handleInputChange}
                                 onBlur={fetchCustomerByEmail}
-                                className="h-11 px-3 mt-2 w-full border border-gray-300 rounded outline-none focus:border-[#b19316]"
+                                className="h-8 px-2 text-sm w-full border border-gray-300 rounded outline-none focus:border-[#b19316]"
                                 required
                             />
                         </div>
 
                         {/* Name */}
-                        <div className="flex flex-col text-sm">
-                            <label className="text-black/70" htmlFor="quote-name">
+                        <div className="flex flex-col text-xs">
+                            <label className="text-black/70 mb-1" htmlFor="quote-name">
                                 Your Name
                             </label>
                             <input
@@ -392,14 +406,14 @@ export default function Popup({ onClose, packageId, addons }) {
                                 type="text"
                                 value={formData.name}
                                 onChange={handleInputChange}
-                                className="h-11 px-3 mt-2 w-full border border-gray-300 rounded outline-none focus:border-[#b19316]"
+                                className="h-8 px-2 text-sm w-full border border-gray-300 rounded outline-none focus:border-[#b19316]"
                                 required
                             />
                         </div>
 
                         {/* Phone */}
-                        <div className="flex flex-col text-sm">
-                            <label className="text-black/70" htmlFor="quote-phone">
+                        <div className="flex flex-col text-xs">
+                            <label className="text-black/70 mb-1" htmlFor="quote-phone">
                                 Phone Number
                             </label>
                             <input
@@ -409,14 +423,14 @@ export default function Popup({ onClose, packageId, addons }) {
                                 value={formData.phone}
                                 onChange={handleInputChange}
                                 placeholder="(+1) 555-123-4567"
-                                className="h-11 px-3 mt-2 w-full border border-gray-300 rounded outline-none focus:border-[#b19316]"
+                                className="h-8 px-2 text-sm w-full border border-gray-300 rounded outline-none focus:border-[#b19316]"
                                 required
                             />
                         </div>
 
                         {/* Address */}
-                        <div className="flex flex-col text-sm">
-                            <label className="text-black/70" htmlFor="quote-address">
+                        <div className="flex flex-col text-xs">
+                            <label className="text-black/70 mb-1" htmlFor="quote-address">
                                 Address
                             </label>
                             <input
@@ -426,14 +440,14 @@ export default function Popup({ onClose, packageId, addons }) {
                                 value={formData.address}
                                 onChange={handleInputChange}
                                 placeholder="123 Main St, City, State, ZIP"
-                                className="h-11 px-3 mt-2 w-full border border-gray-300 rounded outline-none focus:border-[#b19316]"
+                                className="h-8 px-2 text-sm w-full border border-gray-300 rounded outline-none focus:border-[#b19316]"
                                 required
                             />
                         </div>
 
                         {/* Event Location */}
-                        <div className="flex flex-col text-sm">
-                            <label className="text-black/70" htmlFor="quote-message">
+                        <div className="flex flex-col text-xs">
+                            <label className="text-black/70 mb-1" htmlFor="quote-message">
                                 Event Location
                             </label>
                             <textarea
@@ -441,14 +455,14 @@ export default function Popup({ onClose, packageId, addons }) {
                                 name="message"
                                 value={formData.message}
                                 onChange={handleInputChange}
-                                className="w-full mt-2 p-3 h-11 border border-gray-300 rounded resize-none outline-none focus:border-[#b19316] overflow-hidden"
+                                className="w-full p-2 text-sm h-8 border border-gray-300 rounded resize-none outline-none focus:border-[#b19316] overflow-hidden"
                                 required
                             />
                         </div>
 
                         {/* Date & Time */}
-                        <div className="flex flex-col text-sm">
-                            <label className="text-black/70" htmlFor="quote-datetime">
+                        <div className="flex flex-col text-xs">
+                            <label className="text-black/70 mb-1" htmlFor="quote-datetime">
                                 Date and Time
                             </label>
                             <input
@@ -457,7 +471,7 @@ export default function Popup({ onClose, packageId, addons }) {
                                 type="datetime-local"
                                 value={formData.datetime}
                                 onChange={handleInputChange}
-                                className="h-11 px-3 mt-2 w-full border border-gray-300 rounded outline-none focus:border-[#b19316]"
+                                className="h-8 px-2 text-sm w-full border border-gray-300 rounded outline-none focus:border-[#b19316]"
                                 required
                             />
                         </div>
@@ -465,23 +479,24 @@ export default function Popup({ onClose, packageId, addons }) {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full md:w-auto cursor-pointer rounded-full bg-[#b19316] text-sm px-10 py-3 text-white font-medium hover:opacity-90 active:scale-95 transition"
+                            className="w-full md:w-auto cursor-pointer rounded-full bg-[#b19316] text-sm px-8 py-2 text-white font-medium hover:opacity-90 active:scale-95 transition mt-3"
                         >
                             {loading ? "Submitting..." : "Send request"}
                         </button>
                     </form>
                 </div>
             </div>
-
-            {/* Toast message */}
-            <div
-                className={`fixed bottom-6 right-6 z-50 transform transition-all duration-300 ease-out ${showMessage ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 pointer-events-none"
-                    }`}
-                aria-live="polite"
-                role="status"
-            >
-                <Message onClose={handleToastClose} />
-            </div>
         </div>
+        
+        {/* Toast message - rendered outside popup */}
+        {showMessage && (
+            <Message 
+                onClose={handleToastClose} 
+                status="success"
+                title="Order placed successfully!"
+                description="Your order has been submitted. We'll contact you shortly."
+            />
+        )}
+        </>
     );
 }

@@ -40,7 +40,7 @@ export default function Message({
     const resolvedDescription = description ?? (isSuccess ? "Wait a moment while we process your request." : "Please try again or contact support.");
 
     return (
-        <div className={`fixed right-4 bottom-4 ${className}`}>
+        <div className={`fixed right-4 bottom-4 z-[9999] ${className}`}>
         <div className={`${isSuccess ? "bg-white" : "bg-white"} inline-flex space-x-3 p-3 text-sm rounded border ${isSuccess ? "border-gray-200" : "border-red-200"} shadow-lg transition-opacity duration-300 ${isClosing ? "opacity-0" : "opacity-100 animate-fadeIn"}`}>
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                 {isSuccess ? (
