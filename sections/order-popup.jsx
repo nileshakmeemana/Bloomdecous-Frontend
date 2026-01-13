@@ -1,15 +1,308 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Message from "./message";
 
-export default function Popup({ onClose }) {
+export default function Popup({ onClose, packageId, addons }) {
     const [showMessage, setShowMessage] = useState(false);
     const hideTimer = useRef(null);
 
-    const handleSubmit = (event) => {
+    const [formData, setFormData] = useState({
+        email: "",
+        name: "",
+        phone: "",
+        address: "",
+        message: "",
+        datetime: "",
+    });
+
+    const [company, setCompany] = useState({
+        name: "",
+        address: "",
+        email: "",
+        tel1: "N/A",
+        tel2: "N/A",
+        tel3: "N/A",
+    });
+
+    const [loading, setLoading] = useState(false);
+
+    /* =========================
+       FETCH COMPANY DETAILS
+    ========================= */
+    const fetchCompanyDetails = async () => {
+        try {
+            const res = await fetch(
+                "http://localhost/Bloomdecous-Backend/API/Public/getCompanyDetails.php"
+            );
+            const data = await res.json();
+            if (data) {
+                setCompany({
+                    name: data.Company_Name || "",
+                    address: data.Company_Address || "",
+                    email: data.Company_Email || "",
+                    tel1: data.Company_Tel1?.trim() || "N/A",
+                    tel2: data.Company_Tel2?.trim() || "N/A",
+                    tel3: data.Company_Tel3?.trim() || "N/A",
+                });
+            }
+        } catch (error) {
+            console.error("Error fetching company details:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchCompanyDetails();
+    }, []);
+
+    /* =========================
+       FETCH CUSTOMER BY EMAIL
+    ========================= */
+    const fetchCustomerByEmail = async () => {
+        if (!formData.email) return;
+
+        try {
+            const res = await fetch(
+                "http://localhost/Bloomdecous-Backend/API/Public/getCustomerDetails.php",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams({ Customer_Email: formData.email }),
+                }
+            );
+
+            const data = await res.json();
+
+            if (data.success && data.data) {
+                setFormData((prev) => ({
+                    ...prev,
+                    name: data.data.Customer_Name || "",
+                    phone: data.data.Customer_Contact || "",
+                    address: data.data.Customer_Address || "",
+                }));
+            } else {
+                setFormData((prev) => ({
+                    ...prev,
+                    name: "",
+                    phone: "",
+                    address: "",
+                }));
+            }
+        } catch (error) {
+            console.error("Error fetching customer details:", error);
+        }
+    };
+
+    /* =========================
+       HANDLE FORM SUBMISSION
+    ========================= */
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        setLoading(true);
+
         if (hideTimer.current) clearTimeout(hideTimer.current);
         setShowMessage(true);
         hideTimer.current = setTimeout(() => setShowMessage(false), 3500);
+
+        try {
+            const selectedAddons = addons
+                .filter((addon) => addon.checked)
+                .map((addon) => ({
+                    Addon_Id: addon.Id,
+                    Addon_Name: addon.Addon_Name,
+                    Addon_Price: addon.Addon_Price,
+                }));
+
+            const postData = new URLSearchParams({
+                Package_Id: packageId,
+                Customer_Email: formData.email,
+                Customer_Name: formData.name,
+                Customer_Contact: formData.phone,
+                Customer_Address: formData.address,
+                Event_Location: formData.message,
+                Event_DateTime: formData.datetime,
+                addons: JSON.stringify(selectedAddons),
+            });
+
+            const res = await fetch(
+                "http://localhost/Bloomdecous-Backend/API/Public/saveOrder.php",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: postData.toString(),
+                }
+            );
+
+            const result = await res.json();
+
+            if (result.success) {
+                console.log("Order saved:", result);
+
+                const confirmationPdfUrl = `http://localhost/Bloomdecous-Backend/API/Public/generateOrderConfirmation.php?order_id=${result.Order_Id}&customerName=${encodeURIComponent(
+                    result.Customer_Name
+                )}&packageName=${encodeURIComponent(
+                    result.Package_Name
+                )}&eventLocation=${encodeURIComponent(
+                    result.Event_Location
+                )}&eventDateTime=${encodeURIComponent(
+                    result.Event_DateTime
+                )}&packagePrice=${encodeURIComponent(
+                    result.Package_Price
+                )}&addons=${encodeURIComponent(JSON.stringify(
+                    selectedAddons.map(a => ({
+                        Addon_Name: a.Addon_Name,
+                        Addon_Price: a.Addon_Price
+                    }))
+                )
+                )}`;
+
+                await sendOrderConfirmationEmail(
+                    result.Order_Id,
+                    result.Customer_Name,
+                    result.Customer_Email,
+                    result.Package_Name,
+                    result.Event_Location,
+                    result.Event_DateTime,
+                    result.Package_Price,
+                    selectedAddons,
+                    confirmationPdfUrl
+                );
+
+                alert("Order placed & confirmation email sent successfully!");
+                onClose();
+            } else {
+                alert(result.message || "Order submission failed!");
+            }
+        } catch (error) {
+            console.error("Error saving order:", error);
+            alert("Server error while submitting order!");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    /* =========================
+       SEND CONFIRMATION EMAIL
+    ========================= */
+    const sendOrderConfirmationEmail = async (
+        orderId,
+        customerName,
+        customerEmail,
+        packageName,
+        eventLocation,
+        eventDateTime,
+        packagePrice,
+        addons,
+        confirmationPdfUrl
+    ) => {
+        if (!customerEmail) return;
+
+        const emailSubject = `Order Confirmation - ${orderId}`;
+        let addonHtml = "";
+
+        if (addons && addons.length > 0) {
+            addonHtml += `<table width="100%" cellpadding="8" cellspacing="0" style="border-collapse:collapse;margin-top:20px;">
+        <tr style="background:#f2f2f2;"><td colspan="2" style="font-weight:bold;">Addon Details</td></tr>`;
+            addons.forEach((addon) => {
+                addonHtml += `<tr><td>${addon.Addon_Name} ($${addon.Addon_Price})</td></tr>`;
+            });
+            addonHtml += "</table>";
+        }
+
+        const formattedPackagePrice = "$" + parseFloat(packagePrice).toFixed(2);
+
+        const emailBody = `
+    <div style="font-family: Arial, sans-serif; background-color:#f6f6f6; padding:30px;">
+        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; margin:auto; background-color:#ffffff; border-radius:8px; overflow:hidden;">
+            
+            <!-- HEADER -->
+            <tr>
+            <td style="background:#b19316;padding:20px;text-align:center;color:#ffffff;">
+                <h2 style="margin:0;">Order Submission Confirmed</h2>
+            </td>
+            </tr>
+
+            <!-- LOGO -->
+            <tr>
+            <td style="padding-top:20px;text-align:center;">
+                <img src="https://uat.orbislk.com/Bloomdecouse/Web/Views/assets/img/logo.png" alt="Logo">
+            </td>
+            </tr>
+
+            <!-- BODY -->
+            <tr>
+            <td style="padding:30px;">
+                <p style="font-size:15px;color:#333;">Dear <b>${customerName}</b>,</p>
+
+                <p style="font-size:14px;color:#555;">
+                Thank you for choosing <b>${company.name}</b>.  
+                Your booking has been <b>successfully submitted</b>.
+                </p>
+
+                <!-- ORDER DETAILS -->
+                <table width="100%" cellpadding="8" cellspacing="0" style="border-collapse:collapse;margin-top:20px;">
+                <tr style="background:#f2f2f2;">
+                    <td colspan="2" style="font-weight:bold;">Order Details</td>
+                </tr>
+                <tr><td><b>Order ID</b></td><td>${orderId}</td></tr>
+                <tr><td><b>Package</b></td><td>${packageName} (${formattedPackagePrice})</td></tr>
+                <tr><td><b>Event Location</b></td><td>${eventLocation}</td></tr>
+                <tr><td><b>Event Date & Time</b></td><td>${eventDateTime}</td></tr>
+                </table>
+
+                <!-- ADDON DETAILS -->
+                ${addonHtml}
+
+                <p style="margin-top:20px;font-size:14px;color:#be3235; font-weight:bold;">
+                Delivery fee will be added at the end depending on the location.<br>(delivery setup and breakdown + tax)
+                </p>
+
+                <p style="margin-top:20px;font-size:14px;color:#555;">
+                Our team member will contact you shortly to discuss further details.
+                </p>
+
+                <p style="font-size:14px;color:#555;">
+                If you have any questions, feel free to contact us.
+                </p>
+
+                <!-- DOWNLOAD BUTTON -->
+                <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:25px;">
+                <tr>
+                    <td align="center">
+                    <a href="${confirmationPdfUrl}" target="_blank"
+                        style="display:inline-block;padding:12px 25px;background:#b19316;color:#ffffff;text-decoration:none;font-size:14px;font-weight:bold;border-radius:5px;">
+                        Download Submission (PDF)
+                    </a>
+                    </td>
+                </tr>
+                </table>
+            </td>
+            </tr>
+
+            <!-- FOOTER -->
+            <tr>
+            <td style="background:#f9f9f9;padding:20px;text-align:center;font-size:12px;color:#777;">
+                <b>${company.name}</b><br>
+                ${company.address}<br>
+                Email: ${company.email}<br>
+                Contact: ${company.tel1}
+            </td>
+            </tr>
+
+        </table>
+    </div>
+    `;
+
+
+        await fetch("http://localhost/Bloomdecous-Backend/sendEmail.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({
+                from: company.email || "company@example.com",
+                name: company.name || "Bloomdecous",
+                to: customerEmail,
+                subject: emailSubject,
+                body: emailBody,
+            }).toString(),
+        });
     };
 
     const handleToastClose = () => {
@@ -17,68 +310,173 @@ export default function Popup({ onClose }) {
         if (hideTimer.current) clearTimeout(hideTimer.current);
     };
 
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
     return (
         <div className="md:grid md:grid-cols-2 max-w-5xl bg-white mx-4 md:mx-auto rounded-xl">
-            <img src="/assets/roses.jpg"
-                alt="roses" className="hidden md:block w-full max-w-lg rounded-l-xl h-full" />
+            <img
+                src="/assets/roses.jpg"
+                alt="roses"
+                className="hidden md:block w-full max-w-lg rounded-l-xl h-full"
+            />
             <div className="relative flex items-center justify-center">
                 <button
                     className="absolute top-6 right-6 bg-gray-200 rounded-full p-2.5 cursor-pointer"
                     aria-label="Close"
                     onClick={onClose}
                 >
-                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M13 2 2 13M2 2l11 11" stroke="#1F2937" strokeOpacity=".7" strokeWidth="3"
-                            strokeLinecap="round" strokeLinejoin="round" />
+                    <svg
+                        width="15"
+                        height="15"
+                        viewBox="0 0 15 15"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M13 2 2 13M2 2l11 11"
+                            stroke="#1F2937"
+                            strokeOpacity=".7"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
                     </svg>
                 </button>
+
                 <div className="max-md:py-14 py-10 px-6 md:px-10 w-full">
-                    <p className="text-sm font-medium text-[#b19316] text-center md:text-left">Request a quote</p>
-                    <h1 className="text-3xl font-semibold text-slate-800 text-center md:text-left mt-1">Tell us about your event</h1>
-                    <p className="mt-3 text-gray-500 text-center md:text-left">Share your details and we'll get back to craft the perfect package for you.</p>
+                    <p className="text-sm font-medium text-[#b19316] text-center md:text-left">
+                        Request a quote
+                    </p>
+                    <h1 className="text-3xl font-semibold text-slate-800 text-center md:text-left mt-1">
+                        Tell us about your event
+                    </h1>
+                    <p className="mt-3 text-gray-500 text-center md:text-left">
+                        Share your details and we'll get back to craft the perfect package for you.
+                    </p>
 
                     <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="flex flex-col text-sm">
-                                <label className="text-black/70" htmlFor="quote-name">Your Name</label>
-                                <input id="quote-name" name="name" className="h-11 px-3 mt-2 w-full border border-gray-300 rounded outline-none focus:border-[#b19316]" type="text" required />
-                            </div>
-                            <div className="flex flex-col text-sm">
-                                <label className="text-black/70" htmlFor="quote-email">Your Email</label>
-                                <input id="quote-email" name="email" className="h-11 px-3 mt-2 w-full border border-gray-300 rounded outline-none focus:border-[#b19316]" type="email" required />
-                            </div>
-                        </div>
+                        {/* Hidden Package Id */}
+                        <input type="hidden" name="packageId" value={packageId} />
 
+                        {/* Email */}
                         <div className="flex flex-col text-sm">
-                            <label className="text-black/70" htmlFor="quote-phone">Phone (optional)</label>
-                            <input id="quote-phone" name="phone" className="h-11 px-3 mt-2 w-full border border-gray-300 rounded outline-none focus:border-[#b19316]" type="tel" placeholder="(+1) 555-123-4567" />
+                            <label className="text-black/70" htmlFor="quote-email">
+                                Your Email
+                            </label>
+                            <input
+                                id="quote-email"
+                                name="email"
+                                type="email"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                onBlur={fetchCustomerByEmail}
+                                className="h-11 px-3 mt-2 w-full border border-gray-300 rounded outline-none focus:border-[#b19316]"
+                                required
+                            />
                         </div>
+
+                        {/* Name */}
                         <div className="flex flex-col text-sm">
-                            <label className="text-black/70" htmlFor="quote-phone">Address</label>
-                            <input id="quote-phone" name="phone" className="h-11 px-3 mt-2 w-full border border-gray-300 rounded outline-none focus:border-[#b19316]" type="text" placeholder="123 Main St, City, State, ZIP" />
+                            <label className="text-black/70" htmlFor="quote-name">
+                                Your Name
+                            </label>
+                            <input
+                                id="quote-name"
+                                name="name"
+                                type="text"
+                                value={formData.name}
+                                onChange={handleInputChange}
+                                className="h-11 px-3 mt-2 w-full border border-gray-300 rounded outline-none focus:border-[#b19316]"
+                                required
+                            />
                         </div>
 
+                        {/* Phone */}
                         <div className="flex flex-col text-sm">
-                            <label className="text-black/70" htmlFor="quote-message">Event Location</label>
-                            <textarea id="quote-message" name="message" className="w-full mt-2 p-3 h-11 border border-gray-300 rounded resize-none outline-none focus:border-[#b19316] overflow-hidden"></textarea>
+                            <label className="text-black/70" htmlFor="quote-phone">
+                                Phone Number
+                            </label>
+                            <input
+                                id="quote-phone"
+                                name="phone"
+                                type="tel"
+                                value={formData.phone}
+                                onChange={handleInputChange}
+                                placeholder="(+1) 555-123-4567"
+                                className="h-11 px-3 mt-2 w-full border border-gray-300 rounded outline-none focus:border-[#b19316]"
+                                required
+                            />
                         </div>
+
+                        {/* Address */}
                         <div className="flex flex-col text-sm">
-                            <label className="text-black/70" htmlFor="quote-message">Date and Time</label>
-                            <input id="quote-phone" name="phone" className="h-11 px-3 mt-2 w-full border border-gray-300 rounded outline-none focus:border-[#b19316]" type="datetime-local" />
-
+                            <label className="text-black/70" htmlFor="quote-address">
+                                Address
+                            </label>
+                            <input
+                                id="quote-address"
+                                name="address"
+                                type="text"
+                                value={formData.address}
+                                onChange={handleInputChange}
+                                placeholder="123 Main St, City, State, ZIP"
+                                className="h-11 px-3 mt-2 w-full border border-gray-300 rounded outline-none focus:border-[#b19316]"
+                                required
+                            />
                         </div>
 
-                        <div className="flex items-center gap-3 text-sm">
-                            <input id="quote-updates" name="updates" type="checkbox" className="h-4 w-4 accent-black" />
-                            <label htmlFor="quote-updates" className="text-gray-600">Send me occasional updates about packages.</label>
+                        {/* Event Location */}
+                        <div className="flex flex-col text-sm">
+                            <label className="text-black/70" htmlFor="quote-message">
+                                Event Location
+                            </label>
+                            <textarea
+                                id="quote-message"
+                                name="message"
+                                value={formData.message}
+                                onChange={handleInputChange}
+                                className="w-full mt-2 p-3 h-11 border border-gray-300 rounded resize-none outline-none focus:border-[#b19316] overflow-hidden"
+                                required
+                            />
                         </div>
 
-                        <button type="submit" className="w-full md:w-auto cursor-pointer rounded-full bg-[#b19316] text-sm px-10 py-3 text-white font-medium hover:opacity-90 active:scale-95 transition">Send request</button>
+                        {/* Date & Time */}
+                        <div className="flex flex-col text-sm">
+                            <label className="text-black/70" htmlFor="quote-datetime">
+                                Date and Time
+                            </label>
+                            <input
+                                id="quote-datetime"
+                                name="datetime"
+                                type="datetime-local"
+                                value={formData.datetime}
+                                onChange={handleInputChange}
+                                className="h-11 px-3 mt-2 w-full border border-gray-300 rounded outline-none focus:border-[#b19316]"
+                                required
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="w-full md:w-auto cursor-pointer rounded-full bg-[#b19316] text-sm px-10 py-3 text-white font-medium hover:opacity-90 active:scale-95 transition"
+                        >
+                            {loading ? "Submitting..." : "Send request"}
+                        </button>
                     </form>
                 </div>
             </div>
+
+            {/* Toast message */}
             <div
-                className={`fixed bottom-6 right-6 z-50 transform transition-all duration-300 ease-out ${showMessage ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 pointer-events-none"}`}
+                className={`fixed bottom-6 right-6 z-50 transform transition-all duration-300 ease-out ${showMessage ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 pointer-events-none"
+                    }`}
                 aria-live="polite"
                 role="status"
             >
@@ -86,4 +484,4 @@ export default function Popup({ onClose }) {
             </div>
         </div>
     );
-};
+}

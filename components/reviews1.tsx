@@ -373,7 +373,7 @@ const Reviews1 = ({
                 <button
                   type="button"
                   onClick={() => setShowForm(false)}
-                  className="rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition hover:bg-gray-50"
+                  className="cursor-pointer rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition hover:bg-gray-50"
                 >
                   Cancel
                 </button>
