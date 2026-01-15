@@ -4,24 +4,24 @@ export default function OurLatestCreations() {
 
     const data = [
         {
-            title: 'Autumn Leaf Harmony',
-            description: 'Earthy seasonal tones with organic patterns, bringing coziness and natural charm into interiors.',
-            image: '/assets/image-1.png',
+            title: 'Sweet Sixteen Elegance',
+            description: 'Lilac balloons with butterfly accents for a magical celebration.',
+            image: '/assets/gallery1.png',
         },
         {
-            title: 'Winter Frost Calm',
-            description: 'Crisp whites with frosted details, enhancing minimalist and contemporary spaces with sophistication.',
-            image: '/assets/image-2.png',
+            title: 'Wedding Floral Backdrop',
+            description: 'Timeless white florals with soft, romantic details.',
+            image: '/assets/gallery2.png',
         },
         {
-            title: 'Spring Canvas',
-            description: 'Pastel floral tones that uplift interiors with beauty, freshness, and vibrant seasonal energy.',
-            image: '/assets/image-3.png',
+            title: 'Teddy Bear Baby Shower',
+            description: 'Adorable teddy themed décor with soft balloon styling.',
+            image: '/assets/gallery3.png',
         },
     ];
     return (
         <section className="flex flex-col items-center justify-center mt-30">
-            <SectionTitle title="Our Latest Creations" subtitle="A showcase of beautifully styled celebrations, designed with intention, emotion, and attention to detail.  " />
+            <SectionTitle title="Our Latest Creations" subtitle="A showcase of beautifully styled celebrations, thoughtfully designed to create unforgettable moments." />
             <div className="flex flex-wrap items-center justify-center gap-10 mt-16">
                 {data.map((item, index) => (
                     <div key={index} className="max-w-80 hover:-translate-y-0.5 transition duration-300">

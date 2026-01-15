@@ -3,10 +3,10 @@ import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 
 export const metadata = {
-    title: 'Bloomdecous',
-    description: 'Bloomdecous is a event planning and management platform that helps you organize and execute successful events with ease.',
+    title: 'BloomdecoUS',
+    description: 'BloomdecoUS is a event planning and management platform that helps you organize and execute successful events with ease.',
     appleWebApp: {
-        title: 'Bloomdecous',
+        title: 'BloomdecoUS',
     },
 };
 
