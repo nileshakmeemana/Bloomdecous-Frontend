@@ -19,7 +19,7 @@ export default function Features() {
                     <p className="text-sm text-slate-600 mt-1">Balloon garlands, backdrops, and neon designs tailored to your theme.</p>
                 </div>
                 <div className="max-w-80 hover:-translate-y-0.5 transition duration-300">
-                    <img className="rounded-xl" src="/assets/features2.png" alt="" />
+                    <img className="rounded-xl" src="/assets/features4.png" alt="" />
                     <h3 className="text-base font-semibold text-slate-700 mt-4">Personalized Baby Shower Decor</h3>
                     <p className="text-sm text-slate-600 mt-1">Custom decorations to celebrate your little one with love and style.</p>
                 </div>
