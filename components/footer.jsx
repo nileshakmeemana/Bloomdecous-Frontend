@@ -48,15 +48,16 @@ export default function Footer() {
                     </div>
                 ))}
                 <div className="max-w-80 md:ml-40">
-                    <p className='font-semibold text-gray-800'>Sign up for newsletter</p>
-                    <p className='mt-5 text-sm'>
-                        Get the latest event inspiration, decor ideas, special offers, and BloomdecoUS updates.
+                    <p className='font-semibold text-gray-800'>Plan Your Event with BloomdecoUS</p>
+                    <p className='mt-4 text-sm'>
+                        Tell us about your event and we'll help bring your vision to life.
                     </p>
                     <div className='flex items-center mt-4'>
-                        <input type="email" className='bg-white w-full border border-gray-300 h-9 px-3 outline-none' />
-                        <button className='flex shrink-0 items-center justify-center btn text-white h-9 px-6'>
-                            Sign up
-                        </button>
+                        <a href="/contact">
+                            <button className='relative z-10 cursor-pointer bg-[#b19316] to-blue-500 text-white text-sm px-5 py-2.5 rounded-xl font-medium hover:scale-105 active:scale-95 transition-all duration-300'>
+                                Send Inquiry
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
