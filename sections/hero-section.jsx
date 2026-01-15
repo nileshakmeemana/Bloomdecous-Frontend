@@ -123,15 +123,6 @@ export default function HeroSection() {
 
             <div className="relative z-10 flex flex-col items-center justify-center w-full">
                 <div className="flex flex-wrap items-center justify-center p-1.5 rounded-full border border-indigo-100">
-                    <div className="flex items-center -space-x-3">
-                        <img className="size-7 rounded-full border-3 border-white"
-                            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=50" alt="userImage1" />
-                        <img className="size-7 rounded-full border-3 border-white"
-                            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=50" alt="userImage2" />
-                        <img className="size-7 rounded-full border-3 border-white"
-                            src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=50&h=50&auto=format&fit=crop"
-                            alt="userImage3" />
-                    </div>
                     <p className="pl-2 pr-3 text-gray-600">Trusted by 1,000+ Happy Event Clients</p>
                 </div>
 

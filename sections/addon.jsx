@@ -88,6 +88,9 @@ export default function Addons() {
                                 <input
                                     type="checkbox"
                                     checked={checkedAddons[addon.Id] || false}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                    }}
                                     onChange={() =>
                                         setCheckedAddons((prev) => ({
                                             ...prev,
