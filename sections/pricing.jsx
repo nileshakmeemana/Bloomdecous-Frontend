@@ -36,28 +36,20 @@ export default function Pricing() {
             <div className="text-center py-20 text-gray-500">Loading packages...</div>
         ) : (
         <div className="flex flex-wrap items-stretch justify-center gap-6 mt-12">
-            {packages.map((pkg, index) => {
-                const cleanedDescription = pkg.Package_Description.replace(/<\/?ul>/g, '');
-                const isPopular = index === 1;
+            {packages.map((pkg) => {
+                const cleanedDescription = pkg.Package_Description.replace(/<\/ul>/g, '');
                 
                 return (
                     <div 
                         key={pkg.Package_Id} 
-                        className={`w-72 flex flex-col text-center p-6 rounded-lg border min-h-90 ${
-                            isPopular 
-                                ? 'bg-[#b19316] text-white border-gray-500/30 relative' 
-                                : 'bg-white text-gray-800/80 border-gray-200'
-                        }`}
+                        className="w-72 flex flex-col text-center p-6 rounded-lg border min-h-90 bg-white text-gray-800/80 border-gray-200"
                     >
-                        {isPopular && (
-                            <p className="absolute px-3 text-sm -top-3.5 left-3.5 py-1 bg-[#8A6308] rounded-full">Most Popular</p>
-                        )}
-                        <p className={`font-semibold ${isPopular ? 'pt-2' : ''}`}>{pkg.Package_Name}</p>
+                        <p className="font-semibold">{pkg.Package_Name}</p>
                         <h1 className="text-3xl font-semibold">
                             ${Math.floor(pkg.Price)}
-                            <span className={`text-sm font-normal ${isPopular ? 'text-white' : 'text-gray-500'}`}>/package</span>
+                            <span className="text-sm font-normal text-gray-500">/package</span>
                         </h1>
-                        <ul className={`list-none text-sm mt-6 space-y-3 text-left ${isPopular ? 'text-white' : 'text-gray-500'}`}>
+                        <ul className="list-none text-sm mt-6 space-y-3 text-left text-gray-500">
                             <div
                                 dangerouslySetInnerHTML={{
                                     __html: cleanedDescription.replace(
@@ -65,7 +57,7 @@ export default function Pricing() {
                                         `
                                         <li class="flex items-center gap-3 mb-2">
                                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
-                                                <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="${isPopular ? 'currentColor' : '#b19316'}"/>
+                                                <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
                                             </svg>
                                             <p>$1</p>
                                         </li>
@@ -77,11 +69,7 @@ export default function Pricing() {
                         <button 
                             type="button" 
                             onClick={() => router.push(`/package?packageId=${pkg.Package_Id}`)} 
-                            className={`cursor-pointer text-sm w-full py-2 rounded font-medium mt-auto transition-all ${
-                                isPopular 
-                                    ? 'bg-white text-[#b19316] hover:bg-gray-200' 
-                                    : 'bg-[#b19316] text-white hover:bg-[#a07f14]'
-                            }`}
+                            className="cursor-pointer text-sm w-full py-2 rounded font-medium mt-auto transition-all bg-[#b19316] text-white hover:bg-[#a07f14]"
                         >
                             Book Now
                         </button>
