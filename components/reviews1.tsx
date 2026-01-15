@@ -49,6 +49,8 @@ const Reviews1 = ({
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const [toast, setToast] = useState({
     open: false,
     status: "success" as "success" | "error",
@@ -73,6 +75,15 @@ const Reviews1 = ({
 
   const handleSelectRating = (value: number) => {
     setFormData((prev) => ({ ...prev, rating: value }));
+  };
+
+  const handleCloseForm = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setShowForm(false);
+      setIsClosing(false);
+      setIsAnimating(false);
+    }, 300); // Match animation duration
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -109,22 +120,27 @@ const Reviews1 = ({
         return;
       }
 
-      // Reset + close popup
-      setShowForm(false);
-      setToast({
-        open: true,
-        status: "success",
-        title: "Review submitted successfully.",
-        description: "Pending approval.",
-      });
-      setFormData({
-        email: "",
-        name: "",
-        contact: "",
-        address: "",
-        rating: 0,
-        message: "",
-      });
+      // Reset + close popup with animation
+      setIsClosing(true);
+      setTimeout(() => {
+        setShowForm(false);
+        setIsClosing(false);
+        setIsAnimating(false);
+        setToast({
+          open: true,
+          status: "success",
+          title: "Review submitted successfully.",
+          description: "Pending approval.",
+        });
+        setFormData({
+          email: "",
+          name: "",
+          contact: "",
+          address: "",
+          rating: 0,
+          message: "",
+        });
+      }, 300); // Match animation duration
     } catch (error) {
       console.error("Submit error:", error);
       setToast({
@@ -137,7 +153,17 @@ const Reviews1 = ({
   };
 
 
+  /* ANIMATE FORM ON OPEN
+  ========================= */
+  useEffect(() => {
+    if (showForm) {
+      // Trigger animation after a brief delay
+      setTimeout(() => setIsAnimating(true), 10);
+    }
+  }, [showForm]);
+
   /* =========================
+     =========================
      FETCH REVIEWS FROM PHP API
   ========================= */
   useEffect(() => {
@@ -269,13 +295,23 @@ const Reviews1 = ({
       </div>
 
       {showForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="w-full max-w-lg rounded-lg bg-white p-6 shadow-xl">
+        <div 
+          className={cn(
+            "fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 transition-opacity duration-300",
+            isClosing ? "opacity-0" : isAnimating ? "opacity-100" : "opacity-0"
+          )}
+        >
+          <div 
+            className={cn(
+              "w-full max-w-lg rounded-lg bg-white p-6 shadow-xl transition-all duration-300",
+              isClosing ? "scale-95 opacity-0" : isAnimating ? "scale-100 opacity-100" : "scale-95 opacity-0"
+            )}
+          >
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold">Write a Review</h3>
               <button
                 type="button"
-                onClick={() => setShowForm(false)}
+                onClick={handleCloseForm}
                 className="text-sm text-muted-foreground hover:text-foreground cursor-pointer"
               >
                 Close
@@ -372,7 +408,7 @@ const Reviews1 = ({
               <div className="flex items-center justify-end gap-3 pt-2">
                 <button
                   type="button"
-                  onClick={() => setShowForm(false)}
+                  onClick={handleCloseForm}
                   className="cursor-pointer rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition hover:bg-gray-50"
                 >
                   Cancel
