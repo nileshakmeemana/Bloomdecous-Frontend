@@ -4,78 +4,64 @@ export default function OurLatestCreations() {
 
     const data = [
         {
-            title: 'Autumn Leaf Harmony',
-            description: 'Earthy seasonal tones with organic patterns, bringing coziness and natural charm into interiors.',
+            title: 'Romantic Floral Table Setting',
+            description: 'Soft blooms and candlelight for a romantic ambiance.',
             image: '/assets/gallery/24.png',
         },
         {
-            title: 'Autumn Leaf Harmony',
-            description: 'Earthy seasonal tones with organic patterns, bringing coziness and natural charm into interiors.',
+            title: 'Sweet Sixteen Decor',
+            description: 'Pink balloons, florals, and custom details for a magical celebration.',
             image: '/assets/gallery/19.png',
         },
         {
-            title: 'Autumn Leaf Harmony',
-            description: 'Earthy seasonal tones with organic patterns, bringing coziness and natural charm into interiors.',
+            title: 'Sweet Sixteen Celebration',
+            description: 'Lilac balloons and butterfly details for a magical celebration.',
             image: '/assets/gallery/5.png',
         },
         {
-            title: 'Autumn Leaf Harmony',
-            description: 'Earthy seasonal tones with organic patterns, bringing coziness and natural charm into interiors.',
+            title: 'Wedding Floral Backdrop',
+            description: 'Lush white florals paired with gentle lighting for a romantic wedding setting.',
             image: '/assets/gallery/6.png',
         },
         {
-            title: 'Winter Frost Calm',
-            description: 'Crisp whites with frosted details, enhancing minimalist and contemporary spaces with sophistication.',
+            title: 'Teddy Bear Baby Shower',
+            description: 'Sweet teddy bear decor paired with gentle colors and balloon styling.',
             image: '/assets/gallery/7.png',
         },
         {
-            title: 'Spring Canvas',
-            description: 'Pastel floral tones that uplift interiors with beauty, freshness, and vibrant seasonal energy.',
+            title: 'Sweet Sixteen Glamour',
+            description: 'A glamorous Sweet Sixteen setup with shimmer walls and elegant balloons.',
             image: '/assets/gallery/8.png',
         },
         {
-            title: 'Spring Canvas',
-            description: 'Pastel floral tones that uplift interiors with beauty, freshness, and vibrant seasonal energy.',
+            title: 'Floral Candle Centerpiece',
+            description: 'Candlelit florals designed to elevate intimate celebrations.',
             image: '/assets/gallery/9.png',
         },
         {
-            title: 'Spring Canvas',
-            description: 'Pastel floral tones that uplift interiors with beauty, freshness, and vibrant seasonal energy.',
+            title: 'Festive Holiday Decor',
+            description: 'A joyful Christmas setup filled with warmth, charm, and seasonal magic.',
             image: '/assets/gallery/10.png',
         },
+    
         {
-            title: 'Spring Canvas',
-            description: 'Pastel floral tones that uplift interiors with beauty, freshness, and vibrant seasonal energy.',
-            image: '/assets/gallery/11.png',
-        },
-        {
-            title: 'Spring Canvas',
-            description: 'Pastel floral tones that uplift interiors with beauty, freshness, and vibrant seasonal energy.',
-            image: '/assets/gallery/12.png',
-        },
-        {
-            title: 'Spring Canvas',
-            description: 'Pastel floral tones that uplift interiors with beauty, freshness, and vibrant seasonal energy.',
-            image: '/assets/gallery/13.png',
-        },
-        {
-            title: 'Spring Canvas',
-            description: 'Pastel floral tones that uplift interiors with beauty, freshness, and vibrant seasonal energy.',
+            title: 'First Birthday Magic',
+            description: 'Soft florals and fluttering butterflies for a sweet celebration.',
             image: '/assets/gallery/14.png',
         },
         {
-            title: 'Spring Canvas',
-            description: 'Pastel floral tones that uplift interiors with beauty, freshness, and vibrant seasonal energy.',
+            title: 'Christening Decor',
+            description: 'Soft blue balloons and elegant accents for a meaningful celebration.',
             image: '/assets/gallery/15.png',
         },
         {
-            title: 'Spring Canvas',
-            description: 'Pastel floral tones that uplift interiors with beauty, freshness, and vibrant seasonal energy.',
+            title: 'Blue & Gold Birthday Setup',
+            description: 'Bold blue balloons and luxe details for a standout birthday.',
             image: '/assets/gallery/16.png',
         },
         {
-            title: 'Spring Canvas',
-            description: 'Pastel floral tones that uplift interiors with beauty, freshness, and vibrant seasonal energy.',
+            title: 'Elegant Graduation Decor',
+            description: 'A bold burgundy and gold balloon backdrop with custom photo details, designed to honor a proud milestone.',
             image: '/assets/gallery/17.png',
         },
     ];
