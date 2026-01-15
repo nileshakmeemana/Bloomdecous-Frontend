@@ -10,6 +10,34 @@ export default function Example() {
     const [loading, setLoading] = useState(true);
     const [flowerPositions, setFlowerPositions] = useState([]);
 
+    // Function to format description with ul/li tags if not already formatted
+    const formatDescription = (description) => {
+        if (!description) return '';
+        
+        // Check if already has ul/li tags
+        if (description.includes('<ul>') || description.includes('<li>')) {
+            return description;
+        }
+        
+        // Split by newlines and filter empty lines
+        const lines = description.split('\n').filter(line => line.trim());
+        
+        // If no newlines, split by common delimiters like commas or bullets
+        let items = lines;
+        if (lines.length === 1) {
+            items = description.split(/[,•-]/).filter(item => item.trim());
+        }
+        
+        // If still only one item, just return with li tag
+        if (items.length === 1) {
+            items = [description];
+        }
+        
+        // Wrap in ul/li tags
+        const listHTML = `<ul>${items.map(item => `<li>${item.trim()}</li>`).join('')}</ul>`;
+        return listHTML;
+    };
+
     useEffect(() => {
         // Generate random positions for flowers on mount
         const generateFlowerPositions = () => {
@@ -178,7 +206,7 @@ export default function Example() {
                     <div className="p-8 hover:bg-gray-50 transition duration-300 flex flex-col justify-between">
                         <div 
                             className="list-none text-gray-500 text-sm space-y-2"
-                            dangerouslySetInnerHTML={{ __html: packageData.Package_Description }}
+                            dangerouslySetInnerHTML={{ __html: formatDescription(packageData.Package_Description) }}
                         />
                         <style jsx>{`
                             div :global(ul) {

@@ -9,6 +9,34 @@ export default function PackageBlocks() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
+    // Function to format description with ul/li tags if not already formatted
+    const formatDescription = (description) => {
+        if (!description) return '';
+        
+        // Check if already has ul/li tags
+        if (description.includes('<ul>') || description.includes('<li>')) {
+            return description;
+        }
+        
+        // Split by newlines and filter empty lines
+        const lines = description.split('\n').filter(line => line.trim());
+        
+        // If no newlines, split by common delimiters like commas or bullets
+        let items = lines;
+        if (lines.length === 1) {
+            items = description.split(/[,•-]/).filter(item => item.trim());
+        }
+        
+        // If still only one item, just return with li tag
+        if (items.length === 1) {
+            items = [description];
+        }
+        
+        // Wrap in ul/li tags
+        const listHTML = `<ul>${items.map(item => `<li>${item.trim()}</li>`).join('')}</ul>`;
+        return listHTML;
+    };
+
     useEffect(() => {
         const fetchPackages = async () => {
             try {
@@ -42,7 +70,8 @@ export default function PackageBlocks() {
     return (
         <div className="grid border rounded-lg max-w-6xl mx-auto border-gray-200/70 grid-cols-1 divide-y divide-gray-200/70 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
             {packages.map((pkg) => {
-                const cleanedDescription = pkg.Package_Description.replace(/<\/?ul>/g, '');
+                const formattedDescription = formatDescription(pkg.Package_Description);
+                const cleanedDescription = formattedDescription.replace(/<\/?ul>/g, '');
 
                 return (
                     <div
@@ -66,14 +95,12 @@ export default function PackageBlocks() {
                                     dangerouslySetInnerHTML={{
                                         __html: cleanedDescription.replace(
                                             /<li>(.*?)<\/li>/g,
-                                            `
-                                        <li class="flex items-center gap-2">
-                                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
-                                            </svg>
-                                            <p>$1</p>
-                                        </li>
-                                        `
+                                            `<li class="flex items-center gap-2">
+                                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z" fill="#b19316"/>
+                                                </svg>
+                                                <p>$1</p>
+                                            </li>`
                                         ),
                                     }}
                                 />
