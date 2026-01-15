@@ -104,6 +104,30 @@ export default function Example() {
                     }
                 `}</style>
                 <div className='relative w-full max-w-5xl bg-white/90 backdrop-blur-sm rounded-2xl border border-[#b19316]/30 px-6 py-16 pb-18 flex flex-col items-center text-center overflow-hidden'>
+                    {/* Balloons decoration */}
+                    <img 
+                        src="/assets/balloon1.png"
+                        alt="" 
+                        className="absolute top-[10px] left-[-100px]"
+                        style={{
+                            width: '450px',
+                            height: '450px',
+                            opacity: 0.8,
+                            zIndex: 5
+                        }}
+                    />
+                    <img 
+                        src="/assets/balloon2.png"
+                        alt="" 
+                        className="absolute top-[-30px] right-[-100px]"
+                        style={{
+                            width: '500px',
+                            height: '500px',
+                            opacity: 0.8,
+                            zIndex: 5
+                        }}
+                    />
+
                     {/* Randomly positioned floating flowers */}
                     {flowerPositions.map((flower, index) => (
                         <img 
