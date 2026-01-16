@@ -85,7 +85,7 @@ export default function PackageHero() {
                     </h2>
                     <p className="text-slate-500 mt-2 max-w-lg max-md:text-sm relative z-10">Create unforgettable moments with thoughtfully designed event packages, custom decor, and seamless setup from start to finish.</p>
                     <button type="button" onClick={() => router.push('/contact')} className="relative z-10 cursor-pointer bg-[#b19316] to-blue-500 text-white text-sm px-5 py-2.5 rounded-xl font-medium mt-4 hover:scale-105 active:scale-95 transition-all duration-300">
-                        Get Your Quote Today
+                        Send Your Inquiry Today
                     </button>
                 </div>
             </div>

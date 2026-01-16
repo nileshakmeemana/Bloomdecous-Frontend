@@ -123,7 +123,7 @@ export default function HeroSection() {
 
             <div className="relative z-10 flex flex-col items-center justify-center w-full">
                 <div className="flex flex-wrap items-center justify-center p-1.5 rounded-full border border-indigo-100">
-                    <p className="pl-2 pr-3 text-gray-600">Trusted by 1,000+ Happy Event Clients</p>
+                    <p className="pl-2 pr-3 text-gray-600">Trusted by Event Professionals & Clients</p>
                 </div>
 
                 <h1

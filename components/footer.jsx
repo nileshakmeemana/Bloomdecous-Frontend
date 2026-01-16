@@ -62,7 +62,7 @@ export default function Footer() {
                 </div>
             </div>
             <div className="flex flex-col md:flex-row py-7 mt-12 border-gray-200 md:justify-between max-md:items-center border-t max-md:text-center gap-2 items-end">
-                <p className="text-center">© 2025 <a href="https://prebuiltui.com?utm_source=material">BloomadecoUS, All rights reserved.</a></p>
+                <p className="text-center">Copyright © {new Date().getFullYear()} <a href="#">BloomdecoUS | Powered by Orbis Solutions</a></p>
                 <div className="flex items-center gap-4">
                     <a href="https://www.facebook.com/happycakesrandy" target="_blank" rel="noreferrer">
                         <FacebookIcon className="size-5 text-gray-400 hover:text-[#b19316]" />

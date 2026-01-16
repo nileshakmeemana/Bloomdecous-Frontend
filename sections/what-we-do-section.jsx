@@ -12,7 +12,7 @@ export default function WhatWeDoSection() {
                 <img className="max-w-sm w-full object-cover rounded-2xl"
                     src="/assets/what-we-do.png"
                     alt="" />
-                <div className="flex items-center gap-1 max-w-72 absolute bottom-8 left-8 bg-white p-4 rounded-xl">
+                {/* <div className="flex items-center gap-1 max-w-72 absolute bottom-8 left-8 bg-white p-4 rounded-xl">
                     <div className="flex -space-x-4 shrink-0">
                         <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200" alt="image"
                             className="size-9 rounded-full border-[3px] border-white hover:-translate-y-1 transition z-1" />
@@ -26,8 +26,8 @@ export default function WhatWeDoSection() {
                             90+
                         </div>
                     </div>
-                    <p className="text-sm font-medium text-slate-800">Join 1,000+ Happy Clients</p>
-                </div>
+                    <p className="text-sm font-medium text-slate-800">Join Our Happy Clients</p>
+                </div> */}
             </div>
             <div className="text-sm text-slate-600 max-w-md">
                 <h1 className="text-xl uppercase font-semibold text-slate-700">What we do?</h1>

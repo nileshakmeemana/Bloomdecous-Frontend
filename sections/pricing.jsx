@@ -11,11 +11,12 @@ export default function Pricing() {
         const fetchPackages = async () => {
             try {
                 const res = await fetch(
-                    'http://localhost/Bloomdecous-Backend/API/Public/getAllPackageData.php'
+                    'http://localhost/Bloomdecous-Backend/API/Public/getPopularPackageData.php'
                 );
                 if (!res.ok) throw new Error('Fetch failed');
                 const data = await res.json();
-                setPackages(data.slice(0, 3));
+                setPackages(data);
+                // setPackages(data.slice(0, 3));
             } catch (err) {
                 console.error('Error fetching packages:', err);
             } finally {
