@@ -358,7 +358,7 @@ const Reviews1 = ({
 
             <form className="mt-4 space-y-4" onSubmit={handleSubmit}>
               <div>
-                <label className="text-sm font-medium">Email*</label>
+                <label className="text-sm font-medium">Email</label>
                 <input
                   required
                   type="email"
