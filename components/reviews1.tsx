@@ -77,6 +77,44 @@ const Reviews1 = ({
     setFormData((prev) => ({ ...prev, rating: value }));
   };
 
+  /* =========================
+     FETCH CUSTOMER BY EMAIL
+  ========================= */
+  const fetchCustomerByEmail = async () => {
+    if (!formData.email) return;
+
+    try {
+      const res = await fetch(
+        "http://localhost/Bloomdecous-Backend/API/Public/getCustomerDetails.php",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({ Customer_Email: formData.email }),
+        }
+      );
+
+      const data = await res.json();
+
+      if (data.success && data.data) {
+        setFormData((prev) => ({
+          ...prev,
+          name: data.data.Customer_Name || "",
+          contact: data.data.Customer_Contact || "",
+          address: data.data.Customer_Address || "",
+        }));
+      } else {
+        setFormData((prev) => ({
+          ...prev,
+          name: "",
+          phone: "",
+          address: "",
+        }));
+      }
+    } catch (error) {
+      console.error("Error fetching customer details:", error);
+    }
+  };
+
   const handleCloseForm = () => {
     setIsClosing(true);
     setTimeout(() => {
@@ -327,13 +365,14 @@ const Reviews1 = ({
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
+                  onBlur={fetchCustomerByEmail}
                   className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm outline-none focus:border-[#b19316] focus:ring-1 focus:ring-[#b19316]"
                 />
               </div>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="text-sm font-medium">Customer Name*</label>
+                  <label className="text-sm font-medium">Customer Name</label>
                   <input
                     required
                     type="text"
@@ -344,7 +383,7 @@ const Reviews1 = ({
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-medium">Contact Number*</label>
+                  <label className="text-sm font-medium">Contact Number</label>
                   <input
                     required
                     type="tel"
@@ -357,19 +396,19 @@ const Reviews1 = ({
               </div>
 
               <div>
-                <label className="text-sm font-medium">Customer Address*</label>
+                <label className="text-sm font-medium">Customer Address</label>
                 <input
                   required
                   type="text"
                   name="address"
-                  value={formData.address}
+                  value={formData.address.replace(/<[^>]*>/g, "")}
                   onChange={handleInputChange}
                   className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm outline-none focus:border-[#b19316] focus:ring-1 focus:ring-[#b19316]"
                 />
               </div>
 
               <div>
-                <label className="text-sm font-medium">Add Star Rating*</label>
+                <label className="text-sm font-medium">Add Star Rating</label>
                 <div className="mt-2 flex items-center gap-2">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <button

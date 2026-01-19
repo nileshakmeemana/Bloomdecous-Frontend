@@ -437,7 +437,7 @@ export default function Popup({ onClose, packageId, addons }) {
                                 id="quote-address"
                                 name="address"
                                 type="text"
-                                value={formData.address}
+                                value={formData.address.replace(/<[^>]*>/g, "")}
                                 onChange={handleInputChange}
                                 placeholder="123 Main St, City, State, ZIP"
                                 className="h-8 px-2 text-sm w-full border border-gray-300 rounded outline-none focus:border-[#b19316]"

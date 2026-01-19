@@ -328,7 +328,7 @@ export default function Booking() {
           <input
             type="text"
             name="address"
-            value={formData.address}
+            value={formData.address.replace(/<[^>]*>/g, "")}
             onChange={handleChange}
             placeholder="Enter your address"
             className="h-10 w-full mt-2 mb-4 px-4 border border-slate-300 rounded-full outline-none focus:ring-1 focus:ring-[#b19316]"
