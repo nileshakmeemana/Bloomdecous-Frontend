@@ -280,8 +280,8 @@ export default function Booking() {
 
         <p className="max-md:text-sm text-gray-500 pb-10 text-center">
           Or just reach out manually to us at{" "}
-          <a href="/" className="text-[#b19316] hover:underline">
-            hello@Bloomadecous.com
+          <a href="/" className="text-[#b19316] hover:underline">        
+            bloomdecous@gmail.com
           </a>
         </p>
 

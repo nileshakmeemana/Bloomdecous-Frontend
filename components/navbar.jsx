@@ -56,7 +56,7 @@ export default function Navbar() {
                     ))}
                 </div>
 
-                <Link href='/contact' className='hidden rounded-full btn px-8 py-2.5 font-medium text-white transition hover:opacity-90 md:inline-block'>
+                <Link href='/packages' className='hidden rounded-full btn px-8 py-2.5 font-medium text-white transition hover:opacity-90 md:inline-block'>
                     Book Now
                 </Link>
 
@@ -92,7 +92,7 @@ export default function Navbar() {
                     </div>
                 ))}
 
-                <Link href='/contact' className='rounded-full btn px-8 py-2.5 font-medium text-white transition hover:opacity-90' onClick={() => setIsOpen(false)}>
+                <Link href='/packages' className='rounded-full btn px-8 py-2.5 font-medium text-white transition hover:opacity-90' onClick={() => setIsOpen(false)}>
                     Book Now
                 </Link>
 
