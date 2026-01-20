@@ -85,7 +85,7 @@ const Reviews1 = ({
 
     try {
       const res = await fetch(
-        "http://localhost/Bloomdecous-Backend/API/Public/getCustomerDetails.php",
+        "https://uat.orbislk.com/Bloomdecous-Backend/API/Public/getCustomerDetails.php",
         {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -129,7 +129,7 @@ const Reviews1 = ({
 
     try {
       const response = await fetch(
-        "http://localhost/Bloomdecous-Backend/API/Public/saveReview.php",
+        "https://uat.orbislk.com/Bloomdecous-Backend/API/Public/saveReview.php",
         {
           method: "POST",
           headers: {
@@ -206,7 +206,7 @@ const Reviews1 = ({
   ========================= */
   useEffect(() => {
     fetch(
-      "http://localhost/Bloomdecous-Backend/API/Public/getAllReviewData.php",
+      "https://uat.orbislk.com/Bloomdecous-Backend/API/Public/getAllReviewData.php",
       { cache: "no-store" }
     )
       .then((res) => res.json())

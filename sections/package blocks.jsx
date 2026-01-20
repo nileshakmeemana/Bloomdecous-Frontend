@@ -41,7 +41,7 @@ export default function PackageBlocks() {
         const fetchPackages = async () => {
             try {
                 const res = await fetch(
-                    'http://localhost/Bloomdecous-Backend/API/Public/getAllPackageData.php'
+                    'https://uat.orbislk.com/Bloomdecous-Backend/API/Public/getAllPackageData.php'
                 );
 
                 if (!res.ok) throw new Error('Fetch failed');

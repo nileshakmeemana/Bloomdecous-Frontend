@@ -10,7 +10,7 @@ export default function OurTestimonialSection() {
 
   useEffect(() => {
     fetch(
-      "http://localhost/Bloomdecous-Backend/API/Public/getRecentReviews.php",
+      "https://uat.orbislk.com/Bloomdecous-Backend/API/Public/getRecentReviews.php",
       { cache: "no-store" }
     )
       .then((res) => res.json())

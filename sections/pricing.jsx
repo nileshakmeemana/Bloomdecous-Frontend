@@ -11,7 +11,7 @@ export default function Pricing() {
         const fetchPackages = async () => {
             try {
                 const res = await fetch(
-                    'http://localhost/Bloomdecous-Backend/API/Public/getPopularPackageData.php'
+                    'https://uat.orbislk.com/Bloomdecous-Backend/API/Public/getPopularPackageData.php'
                 );
                 if (!res.ok) throw new Error('Fetch failed');
                 const data = await res.json();

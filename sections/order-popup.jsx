@@ -32,7 +32,7 @@ export default function Popup({ onClose, packageId, addons }) {
     const fetchCompanyDetails = async () => {
         try {
             const res = await fetch(
-                "http://localhost/Bloomdecous-Backend/API/Public/getCompanyDetails.php"
+                "https://uat.orbislk.com/Bloomdecous-Backend/API/Public/getCompanyDetails.php"
             );
             const data = await res.json();
             if (data) {
@@ -62,7 +62,7 @@ export default function Popup({ onClose, packageId, addons }) {
 
         try {
             const res = await fetch(
-                "http://localhost/Bloomdecous-Backend/API/Public/getCustomerDetails.php",
+                "https://uat.orbislk.com/Bloomdecous-Backend/API/Public/getCustomerDetails.php",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -120,7 +120,7 @@ export default function Popup({ onClose, packageId, addons }) {
             });
 
             const res = await fetch(
-                "http://localhost/Bloomdecous-Backend/API/Public/saveOrder.php",
+                "https://uat.orbislk.com/Bloomdecous-Backend/API/Public/saveOrder.php",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -133,7 +133,7 @@ export default function Popup({ onClose, packageId, addons }) {
             if (result.success) {
                 console.log("Order saved:", result);
 
-                const confirmationPdfUrl = `http://localhost/Bloomdecous-Backend/API/Public/generateOrderConfirmation.php?order_id=${result.Order_Id}&customerName=${encodeURIComponent(
+                const confirmationPdfUrl = `https://uat.orbislk.com/Bloomdecous-Backend/API/Public/generateOrderConfirmation.php?order_id=${result.Order_Id}&customerName=${encodeURIComponent(
                     result.Customer_Name
                 )}&packageName=${encodeURIComponent(
                     result.Package_Name
@@ -174,7 +174,7 @@ export default function Popup({ onClose, packageId, addons }) {
                     
                     // Close popup after toast duration (5 seconds)
                     hideTimer.current = setTimeout(() => {
-                        onClose();
+                        handleToastClose();
                     }, 5000);
                 }, 300); // Match fade out animation duration
             } else {
@@ -232,7 +232,7 @@ export default function Popup({ onClose, packageId, addons }) {
             <!-- LOGO -->
             <tr>
             <td style="padding-top:20px;text-align:center;">
-                <img src="https://uat.orbislk.com/Bloomdecouse/Web/Views/assets/img/logo.png" alt="Logo">
+                <img src="https://uat.orbislk.com/Bloomdecous-Backend/Web/Views/assets/img/logo.png" alt="Logo">
             </td>
             </tr>
 
@@ -301,7 +301,7 @@ export default function Popup({ onClose, packageId, addons }) {
     `;
 
 
-        await fetch("http://localhost/Bloomdecous-Backend/sendEmail.php", {
+        await fetch("https://uat.orbislk.com/Bloomdecous-Backend/sendEmail.php", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: new URLSearchParams({
@@ -317,7 +317,14 @@ export default function Popup({ onClose, packageId, addons }) {
     const handleToastClose = () => {
         setShowMessage(false);
         if (hideTimer.current) clearTimeout(hideTimer.current);
+    
+        // Close popup
         onClose();
+    
+        // Refresh page after a short delay (smooth UX)
+        setTimeout(() => {
+            window.location.reload();
+        }, 300);
     };
 
     const handleInputChange = (e) => {

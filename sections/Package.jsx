@@ -70,7 +70,7 @@ export default function Example() {
             try {
                 console.log('Fetching package with ID:', packageId);
                 const response = await fetch(
-                    `http://localhost/Bloomdecous-Backend/API/Public/viewPackageData.php?Package_Id=${packageId}`
+                    `https://uat.orbislk.com/Bloomdecous-Backend/API/Public/viewPackageData.php?Package_Id=${packageId}`
                 );
                 console.log('Response status:', response.status);
                 const data = await response.json();
