@@ -6,63 +6,63 @@ export default function OurLatestCreations() {
         {
             title: 'Romantic Floral Table Setting',
             description: 'Soft blooms and candlelight for a romantic ambiance.',
-            image: '/assets/gallery/24.png',
+            image: '/assets/Gallery/24.png',
         },
         {
             title: 'Sweet Sixteen Decor',
             description: 'Pink balloons, florals, and custom details for a magical celebration.',
-            image: '/assets/gallery/19.png',
+            image: '/assets/Gallery/19.png',
         },
         {
             title: 'Sweet Sixteen Celebration',
             description: 'Lilac balloons and butterfly details for a magical celebration.',
-            image: '/assets/gallery/5.png',
+            image: '/assets/Gallery/5.png',
         },
         {
             title: 'Wedding Floral Backdrop',
             description: 'Lush white florals paired with gentle lighting for a romantic wedding setting.',
-            image: '/assets/gallery/6.png',
+            image: '/assets/Gallery/6.png',
         },
         {
             title: 'Teddy Bear Baby Shower',
             description: 'Sweet teddy bear decor paired with gentle colors and balloon styling.',
-            image: '/assets/gallery/7.png',
+            image: '/assets/Gallery/7.png',
         },
         {
             title: 'Sweet Sixteen Glamour',
             description: 'A glamorous Sweet Sixteen setup with shimmer walls and elegant balloons.',
-            image: '/assets/gallery/8.png',
+            image: '/assets/Gallery/8.png',
         },
         {
             title: 'Floral Candle Centerpiece',
             description: 'Candlelit florals designed to elevate intimate celebrations.',
-            image: '/assets/gallery/9.png',
+            image: '/assets/Gallery/9.png',
         },
         {
             title: 'Festive Holiday Decor',
             description: 'A joyful Christmas setup filled with warmth, charm, and seasonal magic.',
-            image: '/assets/gallery/10.png',
+            image: '/assets/Gallery/10.png',
         },
     
         {
             title: 'First Birthday Magic',
             description: 'Soft florals and fluttering butterflies for a sweet celebration.',
-            image: '/assets/gallery/14.png',
+            image: '/assets/Gallery/14.png',
         },
         {
             title: 'Christening Decor',
             description: 'Soft blue balloons and elegant accents for a meaningful celebration.',
-            image: '/assets/gallery/15.png',
+            image: '/assets/Gallery/15.png',
         },
         {
             title: 'Blue & Gold Birthday Setup',
             description: 'Bold blue balloons and luxe details for a standout birthday.',
-            image: '/assets/gallery/16.png',
+            image: '/assets/Gallery/16.png',
         },
         {
             title: 'Elegant Graduation Decor',
             description: 'A bold burgundy and gold balloon backdrop with custom photo details, designed to honor a proud milestone.',
-            image: '/assets/gallery/17.png',
+            image: '/assets/Gallery/17.png',
         },
     ];
     return (
