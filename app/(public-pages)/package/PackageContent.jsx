@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import Package from '@/sections/Package';
 import Addons from '@/sections/addon';
 import Popup from '@/sections/order-popup';
@@ -14,8 +14,10 @@ export default function PackageContent() {
 
     return (
         <>
-            <Package />
-            <Addons onOpenPopup={handleOpenPopup} />
+            <Suspense fallback={<div>Loading...</div>}>
+                <Package />
+                <Addons onOpenPopup={handleOpenPopup} />
+            </Suspense>
             <Reviews1   />
 
             {showPopup && (

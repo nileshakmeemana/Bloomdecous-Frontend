@@ -1,4 +1,4 @@
-import OurLatestCreations from '@/sections/our-latest-creations py';
+import OurLatestCreations from '@/sections/our-latest-creations-py';
 import Gallery from '@/sections/gallery';
 import MarqueeCards from '@/sections/instagram';
 

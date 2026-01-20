@@ -1,6 +1,6 @@
 import Message from '@/sections/message';
-import PackageBlocks from '@/sections/package blocks';
-import PackageHero from '@/sections/package hero';
+import PackageBlocks from '@/sections/package-blocks';
+import PackageHero from '@/sections/package-hero';
 
 export const metadata = {
     title: 'Packages',

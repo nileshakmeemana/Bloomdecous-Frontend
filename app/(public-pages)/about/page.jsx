@@ -1,5 +1,5 @@
-import AboutGrid from '@/sections/about grid';
-import AboutLatest from '@/sections/about latest';
+import AboutGrid from '@/sections/about-grid';
+import AboutLatest from '@/sections/about-latest';
 
 
 export const metadata = {
