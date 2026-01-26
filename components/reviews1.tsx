@@ -1,5 +1,6 @@
 "use client";
 
+import { API_BASE_URL } from "@/lib/config";
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { BadgeCheck, Star } from "lucide-react";
 
@@ -85,7 +86,7 @@ const Reviews1 = ({
 
     try {
       const res = await fetch(
-        "https://uat.orbislk.com/Bloomdecous-Backend/API/Public/getCustomerDetails.php",
+        API_BASE_URL + "Bloomdecous-Backend/API/Public/getCustomerDetails.php",
         {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -129,7 +130,7 @@ const Reviews1 = ({
 
     try {
       const response = await fetch(
-        "https://uat.orbislk.com/Bloomdecous-Backend/API/Public/saveReview.php",
+        API_BASE_URL + "Bloomdecous-Backend/API/Public/saveReview.php",
         {
           method: "POST",
           headers: {
@@ -206,7 +207,7 @@ const Reviews1 = ({
   ========================= */
   useEffect(() => {
     fetch(
-      "https://uat.orbislk.com/Bloomdecous-Backend/API/Public/getAllReviewData.php",
+      API_BASE_URL + "Bloomdecous-Backend/API/Public/getAllReviewData.php",
       { cache: "no-store" }
     )
       .then((res) => res.json())

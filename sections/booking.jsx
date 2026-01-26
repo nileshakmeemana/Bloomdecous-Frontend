@@ -1,5 +1,6 @@
 "use client";
 
+import { API_BASE_URL } from "@/lib/config";
 import { useState, useEffect } from "react";
 import Message from "./message";
 
@@ -27,7 +28,7 @@ export default function Booking() {
      FETCH COMPANY DETAILS
   ========================= */
   useEffect(() => {
-    fetch("https://uat.orbislk.com/Bloomdecous-Backend/API/Public/getCompanyDetails.php")
+    fetch(API_BASE_URL + "Bloomdecous-Backend/API/Public/getCompanyDetails.php")
       .then((res) => res.json())
       .then((data) => {
         setCompany({
@@ -56,7 +57,7 @@ export default function Booking() {
 
     try {
       const res = await fetch(
-        "https://uat.orbislk.com/Bloomdecous-Backend/API/Public/getCustomerDetails.php",
+        API_BASE_URL + "Bloomdecous-Backend/API/Public/getCustomerDetails.php",
         {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -94,7 +95,7 @@ export default function Booking() {
 
     try {
       const res = await fetch(
-        "https://uat.orbislk.com/Bloomdecous-Backend/API/Public/saveDetails.php",
+        API_BASE_URL + "Bloomdecous-Backend/API/Public/saveDetails.php",
         {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -159,7 +160,7 @@ export default function Booking() {
         <!-- LOGO -->
         <tr>
           <td style="padding-top:20px;text-align:center;">
-            <img src="https://uat.orbislk.com/Bloomdecous-Backend/Web/Views/assets/img/logo.png" alt="Logo">
+            <img src="${API_BASE_URL}/Bloomdecous-Backend/Web/Views/assets/img/logo.png" alt="Logo">
           </td>
         </tr>
 
@@ -210,7 +211,7 @@ export default function Booking() {
         <!-- LOGO -->
         <tr>
           <td style="padding-top:20px;text-align:center;">
-            <img src="https://uat.orbislk.com/Bloomdecous-Backend/Web/Views/assets/img/logo.png" alt="Logo">
+            <img src="${API_BASE_URL}/Bloomdecous-Backend/Web/Views/assets/img/logo.png" alt="Logo">
           </td>
         </tr>
 
@@ -250,14 +251,14 @@ export default function Booking() {
   };
 
   const sendEmail = async (from, name, to, subject, body) => {
-    await fetch("https://uat.orbislk.com/Bloomdecous-Backend/sendEmail.php", {
+    await fetch(API_BASE_URL + "Bloomdecous-Backend/sendEmail.php", {
       method: "POST",
       body: new URLSearchParams({ from, name, to, subject, body }),
     });
   };
 
   const receiverEmail = async (from, name, to, subject, body) => {
-    await fetch("https://uat.orbislk.com/Bloomdecous-Backend/sendEmail.php", {
+    await fetch(API_BASE_URL + "Bloomdecous-Backend/sendEmail.php", {
       method: "POST",
       body: new URLSearchParams({ from, name, to, subject, body }),
     });
