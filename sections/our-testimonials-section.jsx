@@ -1,5 +1,6 @@
 "use client";
 
+import { API_BASE_URL } from "@/lib/config";
 import { useEffect, useState } from "react";
 import SectionTitle from "@/components/section-title";
 import { StarIcon } from "lucide-react";
@@ -10,7 +11,7 @@ export default function OurTestimonialSection() {
 
   useEffect(() => {
     fetch(
-      "https://uat.orbislk.com/Bloomdecous-Backend/API/Public/getRecentReviews.php",
+      API_BASE_URL + "Bloomdecous-Backend/API/Public/getRecentReviews.php",
       { cache: "no-store" }
     )
       .then((res) => res.json())

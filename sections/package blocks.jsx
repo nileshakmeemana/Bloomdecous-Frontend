@@ -1,5 +1,6 @@
 'use client';
 
+import { API_BASE_URL } from "@/lib/config";
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -41,7 +42,7 @@ export default function PackageBlocks() {
         const fetchPackages = async () => {
             try {
                 const res = await fetch(
-                    'https://uat.orbislk.com/Bloomdecous-Backend/API/Public/getAllPackageData.php'
+                    API_BASE_URL + 'Bloomdecous-Backend/API/Public/getAllPackageData.php'
                 );
 
                 if (!res.ok) throw new Error('Fetch failed');
@@ -80,15 +81,15 @@ export default function PackageBlocks() {
                     >
                         <div className="flex-1 flex flex-col gap-4 w-full">
                             <div className="flex items-center gap-2 text-gray-500">
-                                <h2 className="font-medium text-base">
+                                <h1 className="font-medium text-3xl">
                                     {pkg.Package_Name}
-                                </h2>
+                                </h1>
                             </div>
 
-                            <h1 className="text-3xl font-semibold">
+                            {/* <h1 className="text-3xl font-semibold">
                                 ${pkg.Price}
                                 <span className="text-sm font-normal"> /package</span>
-                            </h1>
+                            </h1> */}
 
                             <ul className="list-none text-gray-500 text-sm mt-6 space-y-1">
                                 <div

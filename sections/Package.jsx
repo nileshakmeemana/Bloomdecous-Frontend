@@ -1,5 +1,6 @@
 'use client';
 
+import { API_BASE_URL } from "@/lib/config";
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 
@@ -70,7 +71,7 @@ export default function Example() {
             try {
                 console.log('Fetching package with ID:', packageId);
                 const response = await fetch(
-                    `https://uat.orbislk.com/Bloomdecous-Backend/API/Public/viewPackageData.php?Package_Id=${packageId}`
+                    `${API_BASE_URL}Bloomdecous-Backend/API/Public/viewPackageData.php?Package_Id=${packageId}`
                 );
                 console.log('Response status:', response.status);
                 const data = await response.json();
@@ -200,7 +201,8 @@ export default function Example() {
                 
                 <div className="border border-gray-200 rounded-lg max-w-5xl mx-auto mt-16 grid grid-cols-1 divide-y divide-gray-200 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
                     <div className="p-8 flex flex-col hover:bg-gray-50 transition duration-300">
-                        <h3 className="text-base font-semibold text-slate-700">{packageData.Package_Name}</h3>
+                        <h1 className="text-3xl font-semibold text-slate-700">{packageData.Package_Name}</h1>
+                        {/* <h3 className="text-base font-semibold text-slate-700">{packageData.Package_Name}</h3> */}
                         <p className="text-sm text-slate-600 mt-1">Beautiful decoration package for your special events.</p>
                     </div>
                     <div className="p-8 hover:bg-gray-50 transition duration-300 flex flex-col justify-between">
@@ -234,9 +236,9 @@ export default function Example() {
                             }
                         `}</style>
                     </div>
-                    <div className="p-8 flex items-center justify-center hover:bg-gray-50 transition duration-300">
+                    {/* <div className="p-8 flex items-center justify-center hover:bg-gray-50 transition duration-300">
                         <h1 className="text-6xl font-semibold">${packageData.Price}<span className="text-gray-500 text-sm font-normal"></span></h1>
-                    </div>
+                    </div> */}
                 </div>
             </section>
             </>

@@ -1,4 +1,6 @@
 'use client';
+
+import { API_BASE_URL } from "@/lib/config";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -11,7 +13,7 @@ export default function Pricing() {
         const fetchPackages = async () => {
             try {
                 const res = await fetch(
-                    'https://uat.orbislk.com/Bloomdecous-Backend/API/Public/getPopularPackageData.php'
+                    API_BASE_URL + 'Bloomdecous-Backend/API/Public/getPopularPackageData.php'
                 );
                 if (!res.ok) throw new Error('Fetch failed');
                 const data = await res.json();
@@ -45,10 +47,11 @@ export default function Pricing() {
                         key={pkg.Package_Id} 
                         className="w-72 flex flex-col text-center p-6 rounded-lg border min-h-90 bg-white text-gray-800/80 border-gray-200"
                     >
-                        <p className="font-semibold">{pkg.Package_Name}</p>
+                        {/* <p className="font-semibold">{pkg.Package_Name}</p> */}
                         <h1 className="text-3xl font-semibold">
-                            ${Math.floor(pkg.Price)}
-                            <span className="text-sm font-normal text-gray-500">/package</span>
+                            {/* ${Math.floor(pkg.Price)} */}
+                            {pkg.Package_Name}
+                            {/* <span className="text-sm font-normal text-gray-500">/package</span> */}
                         </h1>
                         <ul className="list-none text-sm mt-6 space-y-3 text-left text-gray-500">
                             <div

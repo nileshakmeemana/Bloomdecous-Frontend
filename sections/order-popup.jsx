@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "@/lib/config";
 import { useRef, useState, useEffect } from "react";
 import Message from "./message";
 
@@ -32,7 +33,7 @@ export default function Popup({ onClose, packageId, addons }) {
     const fetchCompanyDetails = async () => {
         try {
             const res = await fetch(
-                "https://uat.orbislk.com/Bloomdecous-Backend/API/Public/getCompanyDetails.php"
+                API_BASE_URL + "Bloomdecous-Backend/API/Public/getCompanyDetails.php"
             );
             const data = await res.json();
             if (data) {
@@ -62,7 +63,7 @@ export default function Popup({ onClose, packageId, addons }) {
 
         try {
             const res = await fetch(
-                "https://uat.orbislk.com/Bloomdecous-Backend/API/Public/getCustomerDetails.php",
+                API_BASE_URL + "Bloomdecous-Backend/API/Public/getCustomerDetails.php",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -120,7 +121,7 @@ export default function Popup({ onClose, packageId, addons }) {
             });
 
             const res = await fetch(
-                "https://uat.orbislk.com/Bloomdecous-Backend/API/Public/saveOrder.php",
+                API_BASE_URL + "Bloomdecous-Backend/API/Public/saveOrder.php",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -133,7 +134,7 @@ export default function Popup({ onClose, packageId, addons }) {
             if (result.success) {
                 console.log("Order saved:", result);
 
-                const confirmationPdfUrl = `https://uat.orbislk.com/Bloomdecous-Backend/API/Public/generateOrderConfirmation.php?order_id=${result.Order_Id}&customerName=${encodeURIComponent(
+                const confirmationPdfUrl = `${API_BASE_URL}Bloomdecous-Backend/API/Public/generateOrderConfirmation.php?order_id=${result.Order_Id}&customerName=${encodeURIComponent(
                     result.Customer_Name
                 )}&packageName=${encodeURIComponent(
                     result.Package_Name
@@ -211,7 +212,7 @@ export default function Popup({ onClose, packageId, addons }) {
             addonHtml += `<table width="100%" cellpadding="8" cellspacing="0" style="border-collapse:collapse;margin-top:20px;">
         <tr style="background:#f2f2f2;"><td colspan="2" style="font-weight:bold;">Addon Details</td></tr>`;
             addons.forEach((addon) => {
-                addonHtml += `<tr><td>${addon.Addon_Name} ($${addon.Addon_Price})</td></tr>`;
+                addonHtml += `<tr><td>${addon.Addon_Name}</td></tr>`;
             });
             addonHtml += "</table>";
         }
@@ -232,7 +233,7 @@ export default function Popup({ onClose, packageId, addons }) {
             <!-- LOGO -->
             <tr>
             <td style="padding-top:20px;text-align:center;">
-                <img src="https://uat.orbislk.com/Bloomdecous-Backend/Web/Views/assets/img/logo.png" alt="Logo">
+                <img src="${API_BASE_URL}/Bloomdecous-Backend/Web/Views/assets/img/logo.png" alt="Logo">
             </td>
             </tr>
 
@@ -252,7 +253,7 @@ export default function Popup({ onClose, packageId, addons }) {
                     <td colspan="2" style="font-weight:bold;">Order Details</td>
                 </tr>
                 <tr><td><b>Order ID</b></td><td>${orderId}</td></tr>
-                <tr><td><b>Package</b></td><td>${packageName} (${formattedPackagePrice})</td></tr>
+                <tr><td><b>Package</b></td><td>${packageName}</td></tr>
                 <tr><td><b>Event Location</b></td><td>${eventLocation}</td></tr>
                 <tr><td><b>Event Date & Time</b></td><td>${eventDateTime}</td></tr>
                 </table>
@@ -301,7 +302,7 @@ export default function Popup({ onClose, packageId, addons }) {
     `;
 
 
-        await fetch("https://uat.orbislk.com/Bloomdecous-Backend/sendEmail.php", {
+        await fetch(API_BASE_URL + "Bloomdecous-Backend/sendEmail.php", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: new URLSearchParams({

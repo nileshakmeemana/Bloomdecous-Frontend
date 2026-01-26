@@ -1,5 +1,6 @@
 'use client';
 
+import { API_BASE_URL } from "@/lib/config";
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Popup from './order-popup';
@@ -26,7 +27,7 @@ export default function Addons() {
             try {
                 console.log('Fetching addons for package:', packageId);
                 const response = await fetch(
-                    `https://uat.orbislk.com/Bloomdecous-Backend/API/Public/viewPackageData.php?Package_Id=${packageId}`
+                    `${API_BASE_URL}Bloomdecous-Backend/API/Public/viewPackageData.php?Package_Id=${packageId}`
                 );
                 const data = await response.json();
                 console.log('Received addons:', data.addons);
@@ -102,7 +103,8 @@ export default function Addons() {
                                 />
                                 <h2 className="font-medium text-base">{addon.Addon_Name}</h2>
                             </div>
-                            <p className="text-sm text-gray-600">${addon.Addon_Price}</p>
+                            <p className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: addon.Addon_description }}></p>
+                            {/* <p className="text-sm text-gray-600">${addon.Addon_Price}</p> */}
                         </div>
                     ))}
                 </div>
