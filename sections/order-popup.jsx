@@ -338,11 +338,11 @@ export default function Popup({ onClose, packageId, addons }) {
 
     return (
         <>
-        <div className={`md:grid md:grid-cols-2 max-w-4xl bg-white mx-4 md:mx-auto rounded-xl transition-opacity duration-300 ${isClosing ? 'opacity-0 pointer-events-none' : 'opacity-100 animate-fadeIn'}`}>
+        <div className={`flex flex-col md:grid md:grid-cols-2 max-w-2xl md:max-w-3xl lg:max-w-4xl bg-white mx-4 rounded-xl transition-opacity duration-300 ${isClosing ? 'opacity-0 pointer-events-none' : 'opacity-100 animate-fadeIn'}`}>
             <img
                 src="/assets/roses.jpg"
                 alt="roses"
-                className="hidden md:block w-full max-w-md rounded-l-xl h-full object-cover"
+                className="hidden md:block w-full rounded-l-xl md:rounded-l-xl h-full object-cover"
             />
             <div className="relative flex items-center justify-center">
                 <button
