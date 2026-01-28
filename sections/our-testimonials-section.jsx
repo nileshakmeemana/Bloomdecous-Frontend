@@ -29,7 +29,7 @@ export default function OurTestimonialSection() {
   }, []);
 
   return (
-    <section className="flex flex-col items-center justify-center mt-40">
+    <section className="flex flex-col items-center justify-center mt-40 md:px-4 md:py-4">
       <SectionTitle
         title="Our Testimonials"
         subtitle="Discover why clients choose BloomdecoUS for elegant, stress free event decor and unforgettable celebrations."

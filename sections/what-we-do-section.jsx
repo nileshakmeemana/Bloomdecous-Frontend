@@ -7,29 +7,13 @@ export default function WhatWeDoSection() {
     const router = useRouter();
 
     return (
-        <section className="flex flex-col md:flex-row items-center justify-center gap-20 mt-20">
-            <div className="relative shadow-2xl shadow-[#EDBD0F]/40 rounded-2xl overflow-hidden shrink-0">
-                <img className="max-w-sm w-full object-cover rounded-2xl"
+        <section className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-20 mt-12 md:mt-20 px-6 lg:px-0">
+            <div className="relative shadow-2xl shadow-[#EDBD0F]/40 rounded-2xl overflow-hidden shrink-0 w-full md:w-auto max-w-sm">
+                <img className="w-full object-cover rounded-2xl"
                     src="/assets/what-we-do.png"
-                    alt="" />
-                {/* <div className="flex items-center gap-1 max-w-72 absolute bottom-8 left-8 bg-white p-4 rounded-xl">
-                    <div className="flex -space-x-4 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200" alt="image"
-                            className="size-9 rounded-full border-[3px] border-white hover:-translate-y-1 transition z-1" />
-                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200" alt="image"
-                            className="size-9 rounded-full border-[3px] border-white hover:-translate-y-1 transition z-[2]" />
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&h=200&auto=format&fit=crop"
-                            alt="image"
-                            className="size-9 rounded-full border-[3px] border-white hover:-translate-y-1 transition z-[3]" />
-                        <div
-                            className="flex items-center justify-center text-xs  text-white size-9 rounded-full border-[3px] border-white bg-[#EDBD0F] hover:-translate-y-1 transition z-[4]">
-                            90+
-                        </div>
-                    </div>
-                    <p className="text-sm font-medium text-slate-800">Join Our Happy Clients</p>
-                </div> */}
+                    alt="What we do" />
             </div>
-            <div className="text-sm text-slate-600 max-w-md">
+            <div className="text-sm text-slate-600 max-w-md w-full">
                 <h1 className="text-xl uppercase font-semibold text-slate-700">What we do?</h1>
                 <div className="w-24 h-[3px] rounded-full bg-gradient-to-r from-[#b19316] to-[#EDBD0F]"></div>
                 <p className="mt-8">BloomdecoUs specializes in creating beautifully styled events through custom balloon decor, elegant backdrops, and luxury event setups tailored to your celebration.</p>

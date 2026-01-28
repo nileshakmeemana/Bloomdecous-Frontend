@@ -30,8 +30,8 @@ export default function Pricing() {
     }, []);
 
     return (
-        <section className="flex flex-col items-center justify-center mt-40 mb-40">
-             <div>
+        <section className="flex flex-col items-center justify-center mt-40 mb-40 md:px-4 md:py-4">
+             <div className="max-md:px-4">
                 <h1 className="text-3xl font-semibold text-center mx-auto">Our Most Popular Packages</h1>
                 <p className="text-sm text-slate-500 text-center mt-2 max-w-md mx-auto">Thoughtfully designed packages that bring elegance, creativity, and ease to your special moments.</p>
              </div>
@@ -45,7 +45,7 @@ export default function Pricing() {
                 return (
                     <div 
                         key={pkg.Package_Id} 
-                        className="w-72 flex flex-col text-center p-6 rounded-lg border min-h-90 bg-white text-gray-800/80 border-gray-200"
+                        className="w-72 flex flex-col text-center p-8 rounded-lg border min-h-[420px] bg-white text-gray-800/80 border-gray-200"
                     >
                         {/* <p className="font-semibold">{pkg.Package_Name}</p> */}
                         <h1 className="text-3xl font-semibold">

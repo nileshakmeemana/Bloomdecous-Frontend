@@ -19,12 +19,12 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className='sticky top-0 z-50 flex w-full items-center justify-between bg-white/50 px-4 py-3.5 backdrop-blur-md md:px-16 lg:px-24'>
+            <nav className='sticky top-0 z-50 flex w-full items-center justify-between bg-white/50 px-4 py-3.5 backdrop-blur-md lg:px-16 xl:px-24'>
                 <a href='/'>
                     <Image src='/assets/Bloom.svg' alt='logo' className='h-8.5 w-auto' width={205} height={48} />
                 </a>
 
-                <div className='hidden items-center space-x-7 text-gray-700 md:flex'>
+                <div className='hidden items-center space-x-4 lg:space-x-7 text-sm lg:text-base text-gray-700 lg:flex'>
                     {links.map((link) => link.subLinks ? (
                         <div key={link.name} className='group relative' onMouseEnter={() => setOpenDropdown(link.name)} onMouseLeave={() => setOpenDropdown(null)}>
                             <div className='flex cursor-pointer items-center gap-1 hover:text-black'>
@@ -56,16 +56,16 @@ export default function Navbar() {
                     ))}
                 </div>
 
-                <Link href='/packages' className='hidden rounded-full btn px-8 py-2.5 font-medium text-white transition hover:opacity-90 md:inline-block'>
+                <Link href='/packages' className='hidden rounded-full btn px-5 lg:px-8 py-2.5 text-sm lg:text-base font-medium text-white transition hover:opacity-90 lg:inline-block'>
                     Book Now
                 </Link>
 
-                <button onClick={() => setIsOpen(true)} className='transition active:scale-90 md:hidden'>
+                <button onClick={() => setIsOpen(true)} className='transition active:scale-90 lg:hidden'>
                     <MenuIcon className='size-6.5' />
                 </button>
             </nav>
 
-            <div className={`fixed inset-0 z-50 flex flex-col items-center justify-center gap-6 bg-white/20 text-lg font-medium backdrop-blur-2xl transition duration-300 md:hidden ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+            <div className={`fixed inset-0 z-50 flex flex-col items-center justify-center gap-6 bg-white/20 text-lg font-medium backdrop-blur-2xl transition duration-300 lg:hidden ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 {links.map((link) => (
                     <div key={link.name} className='text-center'>
                         {link.subLinks ? (

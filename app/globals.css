@@ -8,7 +8,7 @@
 }
 
 body {
-    @apply bg-white text-gray-900 text-sm antialiased;
+    @apply bg-white text-gray-900 text-sm antialiased overflow-x-hidden;
 }
 
 .btn {
@@ -126,6 +126,9 @@ body {
 }
 
 @layer base {
+  html {
+    @apply overflow-x-hidden;
+  }
   * {
     @apply border-border outline-ring/50;
     }

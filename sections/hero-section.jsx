@@ -52,14 +52,14 @@ export default function HeroSection() {
     }
 
     return (
-        <section className="flex flex-col items-center justify-center relative h-150 overflow-hidden">
+        <section className="flex flex-col items-center justify-center relative h-150 overflow-hidden w-full">
             <style jsx global>{`
                 @keyframes flower-spin {
                     from { transform: rotate(0deg); }
                     to { transform: rotate(360deg); }
                 }
             `}</style>
-            <svg className="absolute inset-0 -z-10" width="100vw" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg className="absolute inset-0 -z-10 w-full" width="100%" height="1080" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#a)">
                     <ellipse cx="271.282" cy="200.379" rx="271.282" ry="200.379" fill="#FBFFE1" />
                 </g>

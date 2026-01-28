@@ -9,7 +9,7 @@ import Pricing from '@/sections/pricing';
 
 export default function Page() {
     return (
-        <main className=''>
+        <main className='w-full max-w-full overflow-x-hidden'>
             <HeroSection />
             <WhatWeDoSection />
             <OurLatestCreations />

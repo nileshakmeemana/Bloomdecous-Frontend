@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
     return (
         <html lang='en'>
             <LenisScroll />
-            <body>
+            <body className="overflow-x-hidden">
                 <PageLoader />
                 {children}
             </body>

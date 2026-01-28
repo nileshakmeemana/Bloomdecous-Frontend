@@ -34,16 +34,16 @@ export default function FaqSection() {
     ];
 
     return (
-        <section className='flex flex-col items-center justify-center mt-40'>
+        <section className='flex flex-col items-center justify-center mt-20 md:mt-40 px-8 py-8'>
             <SectionTitle title="FAQ's" subtitle="Looking for answers to your frequently asked questions? Check out our FAQ's section below to find." />
-            <div className='mx-auto mt-12 w-full max-w-xl'>
+            <div className='mx-auto mt-8 md:mt-12 w-full max-w-xl'>
                 {data.map((item, index) => (
                     <div key={index} className='flex flex-col border-b border-gray-200 bg-white'>
-                        <h3 className='flex cursor-pointer items-start justify-between gap-4 py-4 font-medium' onClick={() => setIsOpen(isOpen === index ? null : index)}>
-                            {item.question}
-                            {isOpen === index ? <MinusIcon className='size-5 text-gray-500' /> : <PlusIcon className='size-5 text-gray-500' />}
+                        <h3 className='flex cursor-pointer items-start justify-between gap-3 md:gap-4 py-3 md:py-4 font-medium text-sm md:text-base' onClick={() => setIsOpen(isOpen === index ? null : index)}>
+                            <span className='flex-1'>{item.question}</span>
+                            {isOpen === index ? <MinusIcon className='size-4 md:size-5 text-gray-500 flex-shrink-0 mt-0.5' /> : <PlusIcon className='size-4 md:size-5 text-gray-500 flex-shrink-0 mt-0.5' />}
                         </h3>
-                        <p className={`pb-4 text-sm/6 text-gray-500 ${isOpen === index ? 'block' : 'hidden'}`}>{item.answer}</p>
+                        <p className={`pb-3 md:pb-4 text-xs md:text-sm leading-relaxed text-gray-500 ${isOpen === index ? 'block' : 'hidden'}`}>{item.answer}</p>
                     </div>
                 ))}
             </div>

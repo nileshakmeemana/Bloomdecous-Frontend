@@ -250,16 +250,8 @@ const Reviews1 = ({
     );
   }
 
-  if (!reviews.length) {
-    return (
-      <section className="py-20 text-center text-muted-foreground">
-        No Reviews Available
-      </section>
-    );
-  }
-
   const averageRating =
-    reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
+    reviews.length > 0 ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length : 0;
 
   return (
     <section className={cn("flex items-center justify-center p-4 py-20", className)}>
@@ -288,8 +280,9 @@ const Reviews1 = ({
         </div>
 
         {/* Reviews List */}
-        <div className="space-y-0">
-          {reviews.map((review, index) => (
+        {reviews.length > 0 ? (
+          <div className="space-y-0">
+            {reviews.map((review, index) => (
             <div key={review.id}>
               {index > 0 && <Separator className="my-6" />}
               <div className="space-y-3">
@@ -330,7 +323,12 @@ const Reviews1 = ({
               </div>
             </div>
           ))}
-        </div>
+          </div>
+        ) : (
+          <div className="py-12 text-center text-muted-foreground">
+            No reviews available yet. Be the first to share your experience!
+          </div>
+        )}
       </div>
 
       {showForm && (
