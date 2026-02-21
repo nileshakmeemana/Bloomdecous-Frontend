@@ -15,6 +15,7 @@ export default function Addons() {
     // State for popup
     const [showPopup, setShowPopup] = useState(false);
     const [selectedPackageId, setSelectedPackageId] = useState('');
+    const [previewImage, setPreviewImage] = useState(null);
 
     useEffect(() => {
         const fetchAddons = async () => {
@@ -81,30 +82,60 @@ export default function Addons() {
                         <div
                             key={addon.Id}
                             onClick={() =>
-                                setCheckedAddons((prev) => ({ ...prev, [addon.Id]: !prev[addon.Id] }))
+                                setCheckedAddons((prev) => ({
+                                    ...prev,
+                                    [addon.Id]: !prev[addon.Id],
+                                }))
                             }
-                            className="cursor-pointer flex flex-col items-start gap-4 hover:bg-gray-50 transition duration-300 p-8 pb-14"
+                            className="cursor-pointer flex items-start gap-6 hover:bg-gray-50 transition-all duration-300 p-8"
                         >
-                            <div className="flex items-center gap-3 text-gray-500">
-                                <input
-                                    type="checkbox"
-                                    checked={checkedAddons[addon.Id] || false}
+                            {/* Image Section */}
+                            {addon.Img && (
+                                <div
+                                    className="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 group relative"
                                     onClick={(e) => {
                                         e.stopPropagation();
+                                        setPreviewImage(addon.Img);
                                     }}
-                                    onChange={() =>
-                                        setCheckedAddons((prev) => ({
-                                            ...prev,
-                                            [addon.Id]: !prev[addon.Id],
-                                        }))
-                                    }
-                                    aria-label={`Select ${addon.Addon_Name}`}
-                                    className="h-4 w-4 accent-black cursor-pointer"
-                                />
-                                <h2 className="font-medium text-base">{addon.Addon_Name}</h2>
+                                >
+                                    <img
+                                        src={addon.Img}
+                                        alt={addon.Addon_Name}
+                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    />
+
+                                    {/* Hover overlay */}
+                                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300"></div>
+                                </div>
+                            )}
+
+                            {/* Content Section */}
+                            <div className="flex flex-col gap-2">
+                                <div className="flex items-center gap-3 text-gray-700">
+                                    <input
+                                        type="checkbox"
+                                        checked={checkedAddons[addon.Id] || false}
+                                        onClick={(e) => e.stopPropagation()}
+                                        onChange={() =>
+                                            setCheckedAddons((prev) => ({
+                                                ...prev,
+                                                [addon.Id]: !prev[addon.Id],
+                                            }))
+                                        }
+                                        className="h-4 w-4 accent-black cursor-pointer"
+                                    />
+                                    <h2 className="font-semibold text-base">
+                                        {addon.Addon_Name}
+                                    </h2>
+                                </div>
+
+                                <p
+                                    className="text-sm text-gray-600 leading-relaxed"
+                                    dangerouslySetInnerHTML={{
+                                        __html: addon.Addon_description,
+                                    }}
+                                ></p>
                             </div>
-                            <p className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: addon.Addon_description }}></p>
-                            {/* <p className="text-sm text-gray-600">${addon.Addon_Price}</p> */}
                         </div>
                     ))}
                 </div>
@@ -141,6 +172,34 @@ export default function Addons() {
                     />
                 </div>
             )}
+
+            {previewImage && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
+                    
+                    {/* Close Button */}
+                    <button
+                        onClick={() => setPreviewImage(null)}
+                        className="absolute top-6 right-6 text-white text-3xl font-light hover:scale-110 transition-transform duration-200"
+                    >
+                        &times;
+                    </button>
+
+                    {/* Background click closes modal */}
+                    <div
+                        className="absolute inset-0"
+                        onClick={() => setPreviewImage(null)}
+                    ></div>
+
+                    {/* Image */}
+                    <img
+                        src={previewImage}
+                        alt="Preview"
+                        onClick={(e) => e.stopPropagation()}
+                        className="relative max-w-[90%] max-h-[90%] rounded-lg shadow-2xl transition-transform duration-300 scale-100"
+                    />
+                </div>
+            )}
+            
         </section>
     );
 }
