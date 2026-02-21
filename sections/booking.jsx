@@ -225,11 +225,11 @@ export default function Booking() {
             <p style="font-size:14px;color:#555;">
               ${formData.message}  
             </p>
-            <p style="font-size:15px;color:#333;">Thanks & Regards 
-              <br><b>${formData.name}</b>,
-              <br><b>${formData.address}</b>,
-              <br><b>${formData.email}</b>,
-              <br><b>${formData.phone}</b>
+            <p style="font-size:15px;color:#333;">Thanks & Regards<br>
+            <b>${formData.name}</b>
+            ${formData.address}
+            Email: ${formData.email}<br>
+            Contact: ${formData.phone}
             </p>
           </td>
         </tr>
