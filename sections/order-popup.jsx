@@ -307,8 +307,9 @@ export default function Popup({ onClose, packageId, addons }) {
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: new URLSearchParams({
                 from: company.email || "company@example.com",
-                name: company.name || "Bloomdecous",
+                name: company.name || "BloomdecoUS",
                 to: customerEmail,
+                cc: company.email,
                 subject: emailSubject,
                 body: emailBody,
             }).toString(),
