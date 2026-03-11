@@ -42,7 +42,7 @@ export default function PackageBlocks() {
         const fetchPackages = async () => {
             try {
                 const res = await fetch(
-                    API_BASE_URL + 'Bloomdecous-Backend/API/Public/getAllPackageData.php'
+                    API_BASE_URL + 'API/Public/getAllPackageData.php'
                 );
 
                 if (!res.ok) throw new Error('Fetch failed');
