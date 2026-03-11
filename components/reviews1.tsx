@@ -86,7 +86,7 @@ const Reviews1 = ({
 
     try {
       const res = await fetch(
-        API_BASE_URL + "Bloomdecous-Backend/API/Public/getCustomerDetails.php",
+        API_BASE_URL + "API/Public/getCustomerDetails.php",
         {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -130,7 +130,7 @@ const Reviews1 = ({
 
     try {
       const response = await fetch(
-        API_BASE_URL + "Bloomdecous-Backend/API/Public/saveReview.php",
+        API_BASE_URL + "API/Public/saveReview.php",
         {
           method: "POST",
           headers: {
@@ -207,7 +207,7 @@ const Reviews1 = ({
   ========================= */
   useEffect(() => {
     fetch(
-      API_BASE_URL + "Bloomdecous-Backend/API/Public/getAllReviewData.php",
+      API_BASE_URL + "API/Public/getAllReviewData.php",
       { cache: "no-store" }
     )
       .then((res) => res.json())
