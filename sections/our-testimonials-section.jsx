@@ -11,7 +11,7 @@ export default function OurTestimonialSection() {
 
   useEffect(() => {
     fetch(
-      API_BASE_URL + "Bloomdecous-Backend/API/Public/getRecentReviews.php",
+      API_BASE_URL + "API/Public/getRecentReviews.php",
       { cache: "no-store" }
     )
       .then((res) => res.json())

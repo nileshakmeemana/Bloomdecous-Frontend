@@ -28,7 +28,7 @@ export default function Addons() {
             try {
                 console.log('Fetching addons for package:', packageId);
                 const response = await fetch(
-                    `${API_BASE_URL}Bloomdecous-Backend/API/Public/viewPackageData.php?Package_Id=${packageId}`
+                    `${API_BASE_URL}API/Public/viewPackageData.php?Package_Id=${packageId}`
                 );
                 const data = await response.json();
                 console.log('Received addons:', data.addons);

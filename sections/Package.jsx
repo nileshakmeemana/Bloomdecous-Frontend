@@ -71,7 +71,7 @@ export default function Example() {
             try {
                 console.log('Fetching package with ID:', packageId);
                 const response = await fetch(
-                    `${API_BASE_URL}Bloomdecous-Backend/API/Public/viewPackageData.php?Package_Id=${packageId}`
+                    `${API_BASE_URL}API/Public/viewPackageData.php?Package_Id=${packageId}`
                 );
                 console.log('Response status:', response.status);
                 const data = await response.json();

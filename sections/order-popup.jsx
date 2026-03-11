@@ -33,7 +33,7 @@ export default function Popup({ onClose, packageId, addons }) {
     const fetchCompanyDetails = async () => {
         try {
             const res = await fetch(
-                API_BASE_URL + "Bloomdecous-Backend/API/Public/getCompanyDetails.php"
+                API_BASE_URL + "API/Public/getCompanyDetails.php"
             );
             const data = await res.json();
             if (data) {
@@ -63,7 +63,7 @@ export default function Popup({ onClose, packageId, addons }) {
 
         try {
             const res = await fetch(
-                API_BASE_URL + "Bloomdecous-Backend/API/Public/getCustomerDetails.php",
+                API_BASE_URL + "API/Public/getCustomerDetails.php",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -121,7 +121,7 @@ export default function Popup({ onClose, packageId, addons }) {
             });
 
             const res = await fetch(
-                API_BASE_URL + "Bloomdecous-Backend/API/Public/saveOrder.php",
+                API_BASE_URL + "API/Public/saveOrder.php",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -134,7 +134,7 @@ export default function Popup({ onClose, packageId, addons }) {
             if (result.success) {
                 console.log("Order saved:", result);
 
-                const confirmationPdfUrl = `${API_BASE_URL}Bloomdecous-Backend/API/Public/generateOrderConfirmation.php?order_id=${result.Order_Id}&customerName=${encodeURIComponent(
+                const confirmationPdfUrl = `${API_BASE_URL}API/Public/generateOrderConfirmation.php?order_id=${result.Order_Id}&customerName=${encodeURIComponent(
                     result.Customer_Name
                 )}&packageName=${encodeURIComponent(
                     result.Package_Name
@@ -233,7 +233,7 @@ export default function Popup({ onClose, packageId, addons }) {
             <!-- LOGO -->
             <tr>
             <td style="padding-top:20px;text-align:center;">
-                <img src="${API_BASE_URL}/Bloomdecous-Backend/Web/Views/assets/img/logo.png" alt="Logo">
+                <img src="${API_BASE_URL}Web/Views/assets/img/logo.png" alt="Logo">
             </td>
             </tr>
 
@@ -302,7 +302,7 @@ export default function Popup({ onClose, packageId, addons }) {
     `;
 
 
-        await fetch(API_BASE_URL + "Bloomdecous-Backend/sendEmail.php", {
+        await fetch(API_BASE_URL + "sendEmail.php", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: new URLSearchParams({

@@ -13,7 +13,7 @@ export default function Pricing() {
         const fetchPackages = async () => {
             try {
                 const res = await fetch(
-                    API_BASE_URL + 'Bloomdecous-Backend/API/Public/getPopularPackageData.php'
+                    API_BASE_URL + 'API/Public/getPopularPackageData.php'
                 );
                 if (!res.ok) throw new Error('Fetch failed');
                 const data = await res.json();
